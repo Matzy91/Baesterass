@@ -8,10 +8,6 @@ import home from "./views/home";
 import headerHTML from './views/static/header/index.html?raw';
 import footerHTML from "./views/static/footer/index.html?raw";
 
-// console.log(footerHTML);
-
-
-
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
 
@@ -61,16 +57,11 @@ const renderApp = () => {
         ${headerHTML}
         ${footerHTML}
         `;
-    // footer är en js-fil som returnerar en template string med html-element.
-    // ett mellanting mellan statisk och dynamisk
 
-    // currentPage är i det här fallet ett objekt innehållande HTML-element
-    // något i stil med document.createElement("div")
     app.insertBefore(currentPage, app.querySelector("footer"));
   }
 };
 
-// initial render
 renderApp();
 
 
