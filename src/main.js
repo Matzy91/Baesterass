@@ -5,8 +5,10 @@ import { setupCounter } from './counter.js'
 
 import about from './views/about/index.js'
 import home from "./views/home";
+import book from "./views/book";
 import headerHTML from './views/static/header/index.html?raw';
 import footerHTML from "./views/static/footer/index.html?raw";
+
 
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
@@ -16,8 +18,8 @@ const getCurrentPage = () => {
      return home();
     case "/about":
       return about();
-    // case "/contact":
-    //   return contactHTML;
+     case "/book":
+     return book();
     default:
       return (window.location.pathname = "/home");
   }
