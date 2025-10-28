@@ -1,4 +1,3 @@
-
 export function renderConfirmedPopup() {
   const popupHTML = `
     <div id="confirmed-popup" class="fixed inset-0 flex items-center justify-center bg-black/40 hidden">
@@ -24,11 +23,10 @@ export function closePopup() {
 }
 
 export function cancelAction() {
-
   console.log("Avbrutet!");
   closePopup();
 }
 
 window.showPopup = showPopup;
 window.closePopup = closePopup;
-window.cancelAction = cancelAction; 
+window.cancelAction = cancelAction;

@@ -34,10 +34,6 @@ export default function book() {
     }
   });
 
-
-
-  
-
   // i slutändan returneras elementet som skapades med document.createElement("div")
   return book;
 }

@@ -1,31 +1,30 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
+import javascriptLogo from "./javascript.svg";
+import viteLogo from "/vite.svg";
+import { setupCounter } from "./counter.js";
 
-import about from './views/about/index.js'
+import about from "./views/about/index.js";
 import home from "./views/home";
 import book from "./views/book";
-import headerHTML from './views/static/header/index.html?raw';
+import headerHTML from "./views/static/header/index.html?raw";
 import footerHTML from "./views/static/footer/index.html?raw";
-
 
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
 
   switch (currentPage) {
-     case "/home":
-     return home();
+    case "/home":
+      return home();
     case "/about":
       return about();
-     case "/book":
-     return book();
+    case "/book":
+      return book();
     default:
       return (window.location.pathname = "/home");
   }
 };
 
-document.querySelector('#app').innerHTML = `
+document.querySelector("#app").innerHTML = `
   <div>
     <a href="https://vite.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
@@ -41,9 +40,9 @@ document.querySelector('#app').innerHTML = `
       Click on the Vite logo to learn more
     </p>
   </div>
-`
+`;
 
-setupCounter(document.querySelector('#counter'))
+setupCounter(document.querySelector("#counter"));
 
 const renderApp = () => {
   const currentPage = getCurrentPage();
@@ -65,7 +64,6 @@ const renderApp = () => {
 };
 
 renderApp();
-
 
 // import "./style.css";
 
