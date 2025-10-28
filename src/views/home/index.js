@@ -28,13 +28,16 @@ export default function home() {
       </section>
      <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Välj datum</label>
      <input type="date" id="date" name="date" class="border border-gray-300 rounded-lg px-3 py-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-    `
-    // 2) Skapa knappen
-    const cta = createButton({
-        label: 'Boka tid', // valfri text
-        variant: 'primary', // "primary" | "cancel"
-        onClick: () => console.log('Knappen klickades'),
-    })
+    `;
+  // 2) Skapa knappen
+  const cta = createButton({
+    label: "Ok!",             // valfri text
+    labelPrimary: "Boka tid", // valfri text för primary(grön) OM toggleOnClick är true
+    labelSecondary: "Avbryt", // valfri text för secondary(röd) OM toggleOnClick är true
+    variant: "primary",            // "primary" | "cancel"
+    toggleOnClick: true,      // växla variant vid klick OM TRUE
+    onClick: () => console.log("Knappen klickades"), // valfri onClick-funktion, mest för att logga i konsolen eller skicka vidare data
+  });
 
     // 3) Append den i sloten
     home.querySelector('.cta-slot').append(cta)

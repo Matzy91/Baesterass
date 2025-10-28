@@ -108,6 +108,27 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.btn {
+  font: inherit;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+/* Grön, för “huvudknappar” */
+.btn-primary {
+  background-color: #69c57a;
+  color: #0b2d14;
+}
+
+/* Grå, för “avbryt/stäng”-knappar */
+.btn-cancel {
+  background-color: #ff3232;
+  color: #333;
+}
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
