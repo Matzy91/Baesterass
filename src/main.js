@@ -4,8 +4,10 @@ import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
 import iconList, { makeIcon } from "./components/icon.js";
 import about from "./views/about/index.js";
-import home from "./views/home/index.js";
-import book from "./views/book/index.js";
+import home from "./views/home";
+import book from "./views/book";
+import staffView  from "./views/staff";
+
 import headerHTML from "./views/static/header/index.html?raw";
 import footerHTML from "./views/static/footer/index.html?raw";
 
@@ -18,7 +20,9 @@ const getCurrentPage = () => {
     case "/about":
     return about();
     case "/book":
-    return book();
+      return book();
+    case "/staff":
+    return staffView();
     default:
     return (window.location.pathname = "/home");
   }
