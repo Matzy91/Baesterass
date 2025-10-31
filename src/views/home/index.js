@@ -15,7 +15,7 @@ export default function home() {
       <h1 class="font-poiret">Washbear Spa</h1>
       <h5 class="text-blue-600">Where dirt goes to die...</h5>
       <br>
-      <button onclick="" class="bg-blue-600 text-black px-4 py-2 rounded-lg">Boka</button>
+      <a href="/book"><button class="bg-blue-600 text-black px-4 py-2 rounded-lg">Boka</button></a>
       <br>
       <button onclick="showPopup()" class="bg-blue-600 text-black px-4 py-2 rounded-lg">
       Visa popup
