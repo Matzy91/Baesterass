@@ -1,5 +1,5 @@
 // För att filtrera mellan olika behandlingar
-const treatmentTypes = [
+export const treatmentTypes = [
   "Massage",
   "Fotvård",
   "Hårvård",
@@ -10,7 +10,7 @@ const treatmentTypes = [
 ];
 
 // För att välja olika behandlingar: visa typ + kostnad
-const treatmentList = [
+export const treatmentList = [
   {
     name: "Massage",
     cost: "1000",
@@ -74,7 +74,7 @@ const treatmentList = [
 ];
 
 // För personal, deras behandlingar och tillgängliga dagar
-const staffList = [
+export const staffList = [
   {
     name: "Jonas",
     treatmentTypes: ["Hårvård", "Fotvård", "Massage"],
@@ -174,6 +174,126 @@ export const reviews = [
   {
     name: "Tilda Tassar",
     text: "Allt var toppen, men jag önskar lite fler fruktiga dofter i bastun.",
+    rating: 4,
+  },
+  {
+    name: "Bosse Bäver",
+    text: "Simhallen var perfekt! Jag simmade runt och kände mig som en riktig vattenråtta.",
+    rating: 5,
+  },
+  {
+    name: "Fiona Fjärtstjärta",
+    text: "Pedikyr och manikyr med lilla svansen i topp – helt underbart!",
+    rating: 4,
+  },
+  {
+    name: "Nils Nospuff",
+    text: "Mysig atmosfär och supervänlig personal. Tassarna luktar som nytvättade moln.",
+    rating: 5,
+  },
+  {
+    name: "Klara Klösnos",
+    text: "Lite småkyligt i bastun, men bubbelbadet vägde upp allt. Mysigt spa för små tassar!",
+    rating: 4,
+  },
+  {
+    name: "Pelle Pälstuss",
+    text: "Jag älskade det! Hela kroppen kändes som om jag låg på moln efter behandlingen.",
+    rating: 5,
+  },
+  {
+    name: "Signe Svansling",
+    text: "Underbar service, men önskar fler doftljus och fluffigare handdukar.",
+    rating: 3,
+  },
+  {
+    name: "Leo Långnos",
+    text: "Bubbelbadet med citrondoft var fantastiskt! Tassarna glänser fortfarande.",
+    rating: 5,
+  },
+  {
+    name: "Maja Mjuksvans",
+    text: "Så mysigt! Kommer definitivt boka fler behandlingar nästa månad.",
+    rating: 5,
+  },
+  {
+    name: "Tobias Tassar",
+    text: "Perfekt för en stressad liten räv som jag! Rekommenderas varmt.",
+    rating: 5,
+  },
+  {
+    name: "Wilma Viftnos",
+    text: "Massage med lavendeldoft var underbar, men jag ville ha lite mer fluffiga handdukar.",
+    rating: 4,
+  },
+  {
+    name: "Egon Ekorrsvans",
+    text: "Pedikyr och tassvård var super! Kändes som nya tassar efteråt.",
+    rating: 5,
+  },
+  {
+    name: "Tindra Tjocknos",
+    text: "Lite högljudt i bubbelpoolen, men annars helt perfekt spa-upplevelse.",
+    rating: 4,
+  },
+  {
+    name: "Olle Oarv",
+    text: "Spaet överträffade mina förväntningar! Kommer definitivt tillbaka.",
+    rating: 5,
+  },
+  {
+    name: "Saga Svanslinga",
+    text: "Underbar service och mysig atmosfär. Tassarna känns mjuka som moln!",
+    rating: 5,
+  },
+  {
+    name: "Vera Viftstjärt",
+    text: "Bastun var varm och skön, men bubbelbadet var höjdpunkten.",
+    rating: 4,
+  },
+  {
+    name: "Axel Ångsvans",
+    text: "Jag har aldrig känt mig så avslappnad! Tassarna tackar för omtanken.",
+    rating: 5,
+  },
+  {
+    name: "Hilda Hoppnos",
+    text: "Fantastisk massage! Lite trångt i rummet, men annars toppen.",
+    rating: 4,
+  },
+  {
+    name: "Nina Nospuff",
+    text: "Bubbelbadet var magiskt! Kommer definitivt ta med hela flocken nästa gång.",
+    rating: 5,
+  },
+  {
+    name: "Leo Lurvnos",
+    text: "Tassvården var perfekt, men jag önskar fler roliga dofter i spaet.",
+    rating: 4,
+  },
+  {
+    name: "Fanny Fjällnos",
+    text: "Allt var supermysigt! Rekommenderas varmt för små tassar och stora hjärtan.",
+    rating: 5,
+  },
+  {
+    name: "Rasmus Rullnos",
+    text: "Lite småstökigt vid entrén, men själva behandlingen var underbar.",
+    rating: 4,
+  },
+  {
+    name: "Sofie Svansprick",
+    text: "Bubbelbad och massage med små tvättbjörnar – jag är helnöjd!",
+    rating: 5,
+  },
+  {
+    name: "Julius Jättnos",
+    text: "Fantastiskt spa! Tassarna känns som silke och jag vill komma tillbaka.",
+    rating: 5,
+  },
+  {
+    name: "Elvira Ekfot",
+    text: "Allt var toppen, men jag önskar fler mysiga filtar och doftljus.",
     rating: 4,
   },
 ];
