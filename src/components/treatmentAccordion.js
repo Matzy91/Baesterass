@@ -1,4 +1,5 @@
 import { makeIcon } from "./icon";
+import iconList from "./icon";
 
 export default function AccordionItem({ title, items }) {
   const item = document.createElement("div");
@@ -7,7 +8,7 @@ export default function AccordionItem({ title, items }) {
   const header = document.createElement("div");
   header.classList.add("accordion-header", "flex", "gap-2", "border-b");
   const h3 = document.createElement("h3");
-  const expandIcon = makeIcon("right", 25, 25);
+  const expandIcon = makeIcon("down", 25, 25);
   expandIcon.classList.add("accordion-icon");
   h3.textContent = title;
 
@@ -38,16 +39,15 @@ export default function AccordionItem({ title, items }) {
 
     document
       .querySelectorAll(".accordion-icon")
-      .forEach((icon) => icon.classList.remove("open"));
+      .forEach((img) => (img.src = iconList.down));
 
     if (!isOpen) {
       content.classList.add("active");
 
-      expandIcon.classList.add("open");
+      expandIcon.src = iconList.up;
     } else {
       content.classList.remove("active");
-
-      expandIcon.classList.remove("open");
+      expandIcon.src = iconList.down;
     }
   });
 

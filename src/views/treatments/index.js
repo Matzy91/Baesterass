@@ -6,7 +6,7 @@ export default function treatments() {
   const treatments = document.createElement("main");
   treatments.classList.add("treatments");
   treatments.innerHTML = `
-    <h2>Behandlingar</h2>
+    <h1>Behandlingar</h1>
   `;
 
   const accordion = document.createElement("article");

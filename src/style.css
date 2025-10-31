@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -9,11 +9,11 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +23,7 @@
 header {
   text-transform: uppercase;
   font-weight: bold;
-  
+
   display: flex;
   justify-content: center;
   nav {
@@ -139,10 +139,6 @@ button:focus-visible {
 
 .accordion-content.active {
   display: block;
-}
-
-.accordion-icon.open {
-  transform: rotate(90deg); /* t.ex. höger -> ner */
 }
 
 @media (prefers-color-scheme: light) {

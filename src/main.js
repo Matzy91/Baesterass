@@ -6,7 +6,8 @@ import iconList, { makeIcon } from "./components/icon.js";
 import about from "./views/about/index.js";
 import home from "./views/home";
 import book from "./views/book";
-import staffView  from "./views/staff";
+import staffView from "./views/staff";
+import testimonials from "./views/reviews/index.js";
 
 import treatments from "./views/treatments/index.js";
 import headerHTML from "./views/static/header/index.html?raw";
@@ -21,11 +22,13 @@ const getCurrentPage = () => {
     case "/about":
       return about();
     case "/book":
-        return book();
+      return book();
     case "/staff":
-    return staffView();
+      return staffView();
     case "/treatments":
       return treatments();
+    case "/testimonials":
+      return testimonials();
     default:
       return (window.location.pathname = "/home");
   }
