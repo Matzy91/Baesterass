@@ -73,15 +73,17 @@ const renderApp = () => {
   }
 
   const homeIcon = makeIcon("home", 25, 25);
-  document.querySelector(".hem").appendChild(homeIcon);
-
-  // dessa kan raderas, bara exempel på hur man skapar ikoner
-  // och hur de appendas (här i footern)
-  const racoonIcon = makeIcon("raccoon", 25, 25);
-  const spaIcon = makeIcon("bubbles", 25, 25);
-
-  document.querySelector("footer").append(racoonIcon);
-  document.querySelector("footer").appendChild(spaIcon);
+  document.querySelector(".hem").appendChild(homeIcon); 
+  
+  const racoonIcon = makeIcon("raccoon", 20, 20);
+  const spaIcon = makeIcon("bubbles", 20, 20);
+  const starIcon = makeIcon("star", 20, 20);
+  const checkIcon = makeIcon("approve", 20, 20);
+  
+  document.querySelector(".staff").append(racoonIcon);
+  document.querySelector(".treatments").append(spaIcon);
+  document.querySelector(".reviewsFooter").append(starIcon);
+  document.querySelector(".bookFooter").append(checkIcon);
 };
 
 renderApp();

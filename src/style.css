@@ -40,15 +40,9 @@ header {
   }
 }
 
-footer {
-  bottom: 0;
-  background-color: #587b9a;
-  color: whitesmoke;
-}
-
 a {
   font-weight: 500;
-  color: #646cff;
+  color: rgb(0, 0, 0);
   text-decoration: inherit;
 }
 a:hover {
