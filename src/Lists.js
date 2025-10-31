@@ -1,5 +1,5 @@
 // För att filtrera mellan olika behandlingar
-const treatmentTypes = [
+export const treatmentTypes = [
   "Massage",
   "Fotvård",
   "Hårvård",
@@ -10,7 +10,7 @@ const treatmentTypes = [
 ];
 
 // För att välja olika behandlingar: visa typ + kostnad
-const treatmentList = [
+export const treatmentList = [
   {
     name: "Massage",
     cost: "1000",

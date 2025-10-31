@@ -128,6 +128,18 @@ button:focus-visible {
   color: #333;
 }
 
+.accordion-content {
+  display: none;
+}
+
+.accordion-content.active {
+  display: block;
+}
+
+.accordion-icon.open {
+  transform: rotate(90deg); /* t.ex. höger -> ner */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
