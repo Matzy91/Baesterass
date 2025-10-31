@@ -5,7 +5,6 @@ import {
 } from "../../components/confirmPopUp";
 import Card from "../../components/reviewcard";
 import { reviews } from "../../Lists.js";
-import { iconHTML } from "../../components/icon.js";
 import { createButton } from "../../components/button.js";
 
 export default function home() {
@@ -65,7 +64,6 @@ export default function home() {
   });
 
   home.querySelector(".testimonials").append(reviewContainer);
-  document.body.insertAdjacentHTML("beforeend", iconHTML);
 
   return home;
 }
