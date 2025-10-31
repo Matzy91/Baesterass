@@ -65,18 +65,17 @@ const renderApp = () => {
     app.insertBefore(currentPage, app.querySelector("footer"));
   }
   
+  // make home-länken en icon
   const homeIcon = makeIcon("home", 25, 25);
-  const approveIcon = makeIcon("approve", 25, 25);
-  const starIcon = makeIcon("star", 25, 25);
-  const leftIcon = makeIcon("left", 25, 25);
-  const rightIcon = makeIcon("right", 25, 25);
-  const exitIcon = makeIcon("exit", 25, 25);
-  document.querySelector("header nav ul li a").appendChild(homeIcon);
-  document.querySelector("footer").append(approveIcon);
-  document.querySelector("footer").appendChild(starIcon)
-  document.querySelector("footer").appendChild(leftIcon)
-  document.querySelector("footer").appendChild(rightIcon)
-  document.querySelector("footer").appendChild(exitIcon)
+  document.querySelector(".hem").appendChild(homeIcon); 
+
+  // dessa kan raderas, bara exempel på hur man skapar ikoner
+  // och hur de appendas (här i footern)
+  const racoonIcon = makeIcon("raccoon", 25, 25);
+  const spaIcon = makeIcon("bubbles", 25, 25);
+  
+  document.querySelector("footer").append(racoonIcon);
+  document.querySelector("footer").appendChild(spaIcon);
 };
 
 renderApp();
