@@ -2,7 +2,7 @@ import "./style.css";
 import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
-
+import iconList, { makeIcon } from "./components/icon.js";
 import about from "./views/about/index.js";
 import home from "./views/home";
 import book from "./views/book";
@@ -13,18 +13,18 @@ import footerHTML from "./views/static/footer/index.html?raw";
 
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
-
+  
   switch (currentPage) {
     case "/home":
-      return home();
+    return home();
     case "/about":
-      return about();
+    return about();
     case "/book":
       return book();
     case "/staff":
     return staffView();
     default:
-      return (window.location.pathname = "/home");
+    return (window.location.pathname = "/home");
   }
 };
 
@@ -46,11 +46,14 @@ document.querySelector("#app").innerHTML = `
   </div>
 `;
 
+
+
+
 setupCounter(document.querySelector("#counter"));
 
 const renderApp = () => {
   const currentPage = getCurrentPage();
-
+  
   if (typeof currentPage === "string") {
     app.innerHTML = `
      ${headerHTML}
@@ -62,9 +65,22 @@ const renderApp = () => {
         ${headerHTML}
         ${footerHTML}
         `;
-
+    
     app.insertBefore(currentPage, app.querySelector("footer"));
   }
+  
+  const homeIcon = makeIcon("home", 25, 25);
+  const approveIcon = makeIcon("approve", 25, 25);
+  const starIcon = makeIcon("star", 25, 25);
+  const leftIcon = makeIcon("left", 25, 25);
+  const rightIcon = makeIcon("right", 25, 25);
+  const exitIcon = makeIcon("exit", 25, 25);
+  document.querySelector("header nav ul li a").appendChild(homeIcon);
+  document.querySelector("footer").append(approveIcon);
+  document.querySelector("footer").appendChild(starIcon)
+  document.querySelector("footer").appendChild(leftIcon)
+  document.querySelector("footer").appendChild(rightIcon)
+  document.querySelector("footer").appendChild(exitIcon)
 };
 
 renderApp();
@@ -88,7 +104,7 @@ renderApp();
 // // för att ändra pathen kan du t.ex. skapa en anchor tag med href="/home"
 // // "/home" kommer då att läggas till i url:en
 // const getCurrentPage = () => {
-//   const currentPage = window.location.pathname;
+  //   const currentPage = window.location.pathname;
 
 //   switch (currentPage) {
 //     case "/home":
@@ -107,7 +123,7 @@ renderApp();
 // // funktionen som renderar appen. kommer behöva köras om varje gång sidan ska omrenderas
 // // detta är grunden i hur man gör statiska html-sidor till interaktiva applikationer
 // const renderApp = () => {
-//   const currentPage = getCurrentPage();
+  //   const currentPage = getCurrentPage();
 
 //   if (typeof currentPage === "string") {
 //     app.innerHTML = `
@@ -116,7 +132,7 @@ renderApp();
 //       ${footer()}
 //     `;
 //   } else {
-//     app.innerHTML = `
+  //     app.innerHTML = `
 //         ${headerHTML}
 //         ${footer()}
 //         `;
