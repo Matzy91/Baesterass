@@ -1,6 +1,21 @@
-export const iconHTML = `
- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
- <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
- </svg>
- <div>eh</div>
-  `;
+import approve from "../icons/approve.svg";
+import exit from "../icons/exit.svg";
+import home from "../icons/home.svg";
+import left from "../icons/leftArrow.svg";
+import right from "../icons/rightArrow.svg";
+import star from "../icons/star.svg";
+
+const iconList = {approve, exit, home, left, right, star,};
+export default iconList;
+
+export function makeIcon(type, width = 25, height = 25) {
+    
+    const icon = document.createElement("img");
+    icon.src =  iconList[type];
+    icon.width = width;
+    icon.height = height;
+    icon.alt = "dis be an icon";
+    
+    return icon;
+}
+
