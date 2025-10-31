@@ -36,6 +36,10 @@ export default function Card({ rating, text, name }) {
   stars.className = "stars";
 
   for (let i = 1; i <= 5; i++) {
+    //   const starIcon = makeIcon(i <= rating ? "star" : "star-empty", 25, 25);
+    // starIcon.className = i <= rating ? "star filled" : "star";
+    // stars.append(starIcon);
+
     const star = document.createElement("span");
     star.textContent = i <= rating ? "★" : "☆";
     star.className = i <= rating ? "star filled" : "star";
