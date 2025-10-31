@@ -4,8 +4,10 @@ import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
 import iconList, { makeIcon } from "./components/icon.js";
 import about from "./views/about/index.js";
-import home from "./views/home/index.js";
-import book from "./views/book/index.js";
+import home from "./views/home";
+import book from "./views/book";
+import staffView  from "./views/staff";
+
 import treatments from "./views/treatments/index.js";
 import headerHTML from "./views/static/header/index.html?raw";
 import footerHTML from "./views/static/footer/index.html?raw";
@@ -19,7 +21,9 @@ const getCurrentPage = () => {
     case "/about":
       return about();
     case "/book":
-      return book();
+        return book();
+    case "/staff":
+    return staffView();
     case "/treatments":
       return treatments();
     default:
@@ -66,17 +70,15 @@ const renderApp = () => {
   }
 
   const homeIcon = makeIcon("home", 25, 25);
-  const approveIcon = makeIcon("approve", 25, 25);
-  const starIcon = makeIcon("star", 25, 25);
-  const leftIcon = makeIcon("left", 25, 25);
-  const rightIcon = makeIcon("right", 25, 25);
-  const exitIcon = makeIcon("exit", 25, 25);
-  document.querySelector("header nav ul li a").appendChild(homeIcon);
-  document.querySelector("footer").append(approveIcon);
-  document.querySelector("footer").appendChild(starIcon);
-  document.querySelector("footer").appendChild(leftIcon);
-  document.querySelector("footer").appendChild(rightIcon);
-  document.querySelector("footer").appendChild(exitIcon);
+  document.querySelector(".hem").appendChild(homeIcon);
+
+  // dessa kan raderas, bara exempel på hur man skapar ikoner
+  // och hur de appendas (här i footern)
+  const racoonIcon = makeIcon("raccoon", 25, 25);
+  const spaIcon = makeIcon("bubbles", 25, 25);
+
+  document.querySelector("footer").append(racoonIcon);
+  document.querySelector("footer").appendChild(spaIcon);
 };
 
 renderApp();

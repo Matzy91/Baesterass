@@ -74,7 +74,7 @@ export const treatmentList = [
 ];
 
 // För personal, deras behandlingar och tillgängliga dagar
-const staffList = [
+export const staffList = [
   {
     name: "Jonas",
     treatmentTypes: ["Hårvård", "Fotvård", "Massage"],
