@@ -15,22 +15,22 @@ import footerHTML from "./views/static/footer/index.html?raw";
 
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
-
+  
   switch (currentPage) {
     case "/home":
-      return home();
+    return home();
     case "/about":
-      return about();
+    return about();
     case "/book":
-      return book();
+    return book();
     case "/staff":
-      return staffView();
+    return staffView();
     case "/treatments":
-      return treatments();
+    return treatments();
     case "/testimonials":
-      return testimonials();
+    return testimonials();
     default:
-      return (window.location.pathname = "/home");
+    return (window.location.pathname = "/home");
   }
 };
 
@@ -56,7 +56,7 @@ setupCounter(document.querySelector("#counter"));
 
 const renderApp = () => {
   const currentPage = getCurrentPage();
-
+  
   if (typeof currentPage === "string") {
     app.innerHTML = `
      ${headerHTML}
@@ -68,22 +68,23 @@ const renderApp = () => {
         ${headerHTML}
         ${footerHTML}
         `;
-
+    
     app.insertBefore(currentPage, app.querySelector("footer"));
   }
-
+  
   const homeIcon = makeIcon("home", 25, 25);
   document.querySelector(".hem").appendChild(homeIcon); 
   
+  const checkIcon = makeIcon("approve", 20, 20);
+  const starIcon = makeIcon("star", 20, 20);
   const racoonIcon = makeIcon("raccoon", 20, 20);
   const spaIcon = makeIcon("bubbles", 20, 20);
-  const starIcon = makeIcon("star", 20, 20);
-  const checkIcon = makeIcon("approve", 20, 20);
   
-  document.querySelector(".staff").append(racoonIcon);
-  document.querySelector(".treatments").append(spaIcon);
-  document.querySelector(".reviewsFooter").append(starIcon);
   document.querySelector(".bookFooter").append(checkIcon);
+  document.querySelector(".reviewsFooter").append(starIcon);
+  document.querySelector(".staffFooter").append(racoonIcon);
+  document.querySelector(".treatmentsFooter").append(spaIcon);
+  
 };
 
 renderApp();
@@ -107,7 +108,7 @@ renderApp();
 // // för att ändra pathen kan du t.ex. skapa en anchor tag med href="/home"
 // // "/home" kommer då att läggas till i url:en
 // const getCurrentPage = () => {
-//   const currentPage = window.location.pathname;
+  //   const currentPage = window.location.pathname;
 
 //   switch (currentPage) {
 //     case "/home":
@@ -126,7 +127,7 @@ renderApp();
 // // funktionen som renderar appen. kommer behöva köras om varje gång sidan ska omrenderas
 // // detta är grunden i hur man gör statiska html-sidor till interaktiva applikationer
 // const renderApp = () => {
-//   const currentPage = getCurrentPage();
+  //   const currentPage = getCurrentPage();
 
 //   if (typeof currentPage === "string") {
 //     app.innerHTML = `
@@ -135,7 +136,7 @@ renderApp();
 //       ${footer()}
 //     `;
 //   } else {
-//     app.innerHTML = `
+  //     app.innerHTML = `
 //         ${headerHTML}
 //         ${footer()}
 //         `;

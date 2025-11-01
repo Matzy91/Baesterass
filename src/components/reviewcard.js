@@ -4,7 +4,7 @@ function getInitials(name) {
 }
 export default function Card({ rating, text, name }) {
   const card = document.createElement("div");
-  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-red-400");
+  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-amber-50", "hover:bg-amber-100", "duration-150", "w-xs");
 
   const customer = document.createElement("div");
   customer.classList.add("flex", "gap-4", "items-center", "mt-auto");
@@ -13,7 +13,7 @@ export default function Card({ rating, text, name }) {
 
   avatar.classList.add(
     "rounded-full",
-    "bg-blue-500",
+    "bg-orange-200",
     "aspect-square",
     "h-12",
     "flex",
@@ -26,6 +26,7 @@ export default function Card({ rating, text, name }) {
   avatar.append(initials);
 
   const h3 = document.createElement("h3");
+  h3.classList.add("font-bold");
   h3.textContent = name;
 
   customer.append(avatar, h3);
@@ -33,7 +34,7 @@ export default function Card({ rating, text, name }) {
   p.textContent = text;
 
   const stars = document.createElement("div");
-  stars.className = "stars";
+  stars.classList.add("stars", "text-orange-300", "text-shadow-sm/40", "text-xl");
 
   for (let i = 1; i <= 5; i++) {
     //   const starIcon = makeIcon(i <= rating ? "star" : "star-empty", 25, 25);
