@@ -1,39 +1,217 @@
-export default function book() {
-  let count = 1;
+import { doc } from "prettier";
+import { treatmentList, treatmentTypes, sortOptions } from "../../Lists";
+import { createButton } from "../../components/button";
+import { renderConfirmedPopup, showPopup, closePopup, cancelAction } from "../../components/confirmPopUp";
 
-  const book = document.createElement("div");
-  book.classList.add("book");
-  book.innerHTML = `
-    <h2>how many boats? BOOK</h2>
-    <h2 id="boatHeading">⛵️</h2>
-    <div class="buttons">
-      <button id="incrementButton">Add boats</button>
-      <button id="decrementButton">Remove boats</button>
-    </div>
-  `;
-  const boatHeading = book.querySelector("#boatHeading");
-  const incrementButton = book.querySelector("#incrementButton");
-  const decrementButton = book.querySelector("#decrementButton");
-
-  if (count === 0) {
-    decrementButton.disabled = true;
-  }
-
-  const updateBoats = () =>
-    (boatHeading.innerHTML =
-      Array.from({ length: count }, (_) => "⛵️").join("") || "no boats");
-
-  incrementButton.addEventListener("click", () => {
-    count++;
-    updateBoats();
-  });
-  decrementButton.addEventListener("click", () => {
-    if (count !== 0) {
-      count--;
-      updateBoats();
+export default function generatebook() {
+    // ----------------- let's make some divs --------------------- //
+    const book = document.createElement("div");
+    book.classList.add("book", "flex", "items-center", "flex-col", "overflow-hidden", "bg-blue-200", "m-8", "p-4", "rounded-md", "drop-shadow-xl", "self-center", "w-[90vw]", "max-w-[1200px]");
+    book.innerHTML = `<h1 class="font-poiret text-center pt-4 mb-4">Välj och boka behandling</h1>`; 
+    
+    const bookingContainer = document.createElement("div");
+    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1200px]", "justify-center");
+    
+    const calendarContainer = document.createElement("div");
+    calendarContainer.classList.add("calendarContainer", "w-[1/3]");
+    // Datumval/kalender ska läggas in i calendarContainer här! 
+    calendarContainer.innerHTML = `<img src="https://img.freepik.com/premium-vector/raccoon-continuous-line-art-drawing_266639-2928.jpg?w=360" alt="racoon">`;
+    
+    const filterContainer = document.createElement("div");
+    filterContainer.classList.add("filterContainer", "min-w-full", "flex", "flex-col");
+    
+    const selectionContainer = document.createElement("div");
+    selectionContainer.classList.add("selectionContainer", "grow")
+    
+    const lowerContainer = document.createElement("div");
+    lowerContainer.classList.add("lowerContainer", "flex", "justify-between", "mr-4", "min-h-[307px]");
+    
+    selectionContainer.append(filterContainer, lowerContainer);
+    bookingContainer.append(calendarContainer, selectionContainer);
+    
+    const filterTop = document.createElement("div");
+    filterTop.classList.add("filter-top", "grid", "bg-blue-100", "rounded-md", "p-1", "grid-cols-4", "[&>*]:shadow-sm/20");
+    const filterBtm = document.createElement("div");
+    filterBtm.classList.add("filter-btm-left","[&>*]:shadow-sm/20", "rounded-md", "p-1", "justify-end", "flex");
+    const dropDown = document.createElement("select");
+    dropDown.classList.add("dropDown", "button");
+    
+    // ----------------- Sorting --------------------- //
+    for (const option of sortOptions) {
+        const optionElement = document.createElement("option");
+        optionElement.textContent = option;
+        dropDown.append(optionElement);
     }
-  });
+    
+    const sortBtn = document.createElement("button");
+    sortBtn.textContent = "Sortera";
+    sortBtn.classList = ("sortBtn", "max-h-fit");
+    
+    filterBtm.append(dropDown, sortBtn);
+    filterContainer.append(filterTop, filterBtm);
+    
+    const boxArray = [];
+    for (const type of treatmentTypes) {
+        const typeDiv = document.createElement("button");
+        typeDiv.classList.add("typeDiv", "flex-none", "basis-1/4", "text-center", "py-2");
+        typeDiv.textContent = type;
+        filterTop.append(typeDiv);
+        boxArray.push(typeDiv);
+    }
+    
+    for (let box of boxArray) {
+        box.addEventListener("click", function() {
+            for (let box of boxArray) {
+                box.style.backgroundColor = "";
+            };
+            const selectedType = box.textContent;
+            filterTreatments(selectedType);
+            box.style.backgroundColor = "#ddddddff";
+        });
+    };
+    
+    function aToO() {
+        treatmentList.sort((a, b) => a.name.localeCompare(b.name));
+        checkoutList();
+    }
+    function oToA() {
+        treatmentList.sort((a, b) => b.name.localeCompare(a.name));
+        checkoutList();
+    }
+    function highToLow() {
+        treatmentList.sort((a, b) => b.cost-a.cost);
+        checkoutList();
+    }
+    function lowToHigh() {
+        treatmentList.sort((a, b) => a.cost-b.cost);
+        checkoutList();
+    }
+    sortBtn.addEventListener("click", function() {
+        const selectedSort = dropDown.value;
+        switch(selectedSort) {
+            case "Alfabetiskt, A → Ö":
+            aToO();
+            break;
+            case "Alfabetiskt, Ö → A":
+            oToA();
+            break;
+            case "Pris, högt → lågt":
+            highToLow();
+            break;
+            case "Pris, lågt → högt":
+            lowToHigh();
+            break;
+        }
+    })
+    
+    // ----------------- Filtering --------------------- //
+    book.append(bookingContainer);  
+    const clearBtn = document.createElement("button");
+    clearBtn.classList.add("m-2", "clearBtn", "flex-none", "basis-1/4", "text-center", "py-2", "shadow-sm/20", "uppercase", "underline");
+    clearBtn.textContent = "Rensa filter";
+    // should this also clear any checked boxes???? perhaps 
+    filterTop.append(clearBtn);
+    
+    function filterTreatments(selectedType) {
+        const allBoxes = document.querySelectorAll(".treatmentBox");
+        allBoxes.forEach(box => {
+            const types = box.dataset.type.split(",");
+            if (types.includes(selectedType)) {
+                box.style.display = "flex";
+            }
+            else {
+                box.style.display = "none";
+            }
+        })
+        clearBtn.addEventListener("click", function() {
+            allBoxes.forEach(box => {
+                box.style.display = "flex";
+            })
+            for (let box of boxArray) {
+                box.style.backgroundColor = "";
+            }
+        })
+    }
+    
+    // ------------ Selection & Summary -------------- //
+    const treatmentContainer = document.createElement("div");
+    treatmentContainer.classList.add("treatmentContainer", "grow");
+    
+    const summaryContainer = document.createElement("div");
+    summaryContainer.classList.add("summaryContainer", "flex", "flex-col", "justify-end", "ml-4", "min-w-1/3");
+    lowerContainer.append(treatmentContainer, summaryContainer);
+    
+    const totalContainer = document.createElement("div");
+    // här ska datum och valda behandlingar läggas till! också personal kanske?
 
-  // i slutändan returneras elementet som skapades med document.createElement("div")
-  return book;
+    totalContainer.classList.add("totalContainer", "inline-flex", "flex");
+    totalContainer.innerHTML = "Total kostnad:&nbsp";
+    const noCard = document.createElement("div");
+    noCard.innerHTML = `
+    <label class="text-sm">
+    <input type="checkbox" class="noCard-check">
+    Betala på plats
+    </label>`
+
+    const cta = createButton({
+        label: "Boka",
+        variant: "primary",
+        onClick: () => {
+            if (document.querySelector(".noCard-check").checked == true) {
+                renderConfirmedPopup();
+                showPopup();
+            }
+            else {
+                alert("Vi godkänner tyvärr inte kortbetalningar - välj att betala på plats för att gå vidare.")
+            }
+        }
+    });
+    cta.classList.add("min-w-fit");
+    
+    summaryContainer.append(totalContainer, noCard,cta);
+    
+    let totalNumber = document.createElement("p");
+    let cost = 0;
+    totalNumber.append(cost, ":-");
+    totalNumber.classList.add("font-bold");
+    
+    function checkoutList() {
+        treatmentContainer.innerHTML = "";
+        for (const treatment of treatmentList) {
+            const treatmentCheck = document.createElement("input");
+            treatmentCheck.setAttribute("type", "checkbox");
+            treatmentCheck.classList.add("treatmentCheck");
+            treatmentCheck.addEventListener("change", function() {
+                if (treatmentCheck.checked == true){
+                    cost = Number(cost) + Number(treatment.cost);
+                    totalNumber.textContent = cost.toLocaleString("sv-SE") + ":-";
+                }
+                else {
+                    cost = Number(cost) - Number(treatment.cost);
+                    totalNumber.textContent = cost.toLocaleString("sv-SE") + ":-"; 
+                }
+            })
+            const treatmentLabel = document.createElement("label");
+            treatmentLabel.textContent = treatment.name;
+            treatmentLabel.classList.add("treatmentLabel", "font-medium");
+            
+            const labelGroup = document.createElement("div");
+            labelGroup.classList.add("labelGroup", "items-center");
+            treatmentLabel.prepend(treatmentCheck);
+            labelGroup.append(treatmentLabel);
+            
+            const treatmentCost = document.createElement("p");
+            treatmentCost.textContent = Number(treatment.cost).toLocaleString("sv-SE") + ":-";
+            treatmentCost.classList.add("treatmentCost");
+            
+            const treatmentBox = document.createElement("div");
+            treatmentBox.dataset.type = treatment.type.join(",");
+            treatmentBox.classList.add("treatmentBox");
+            treatmentBox.append(labelGroup, treatmentCost);
+            treatmentContainer.append(treatmentBox);
+        }
+        totalContainer.append(totalNumber);  
+    }
+    checkoutList();
+    return book;
 }

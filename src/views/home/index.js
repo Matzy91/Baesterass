@@ -9,11 +9,8 @@ import { createButton } from "../../components/button.js";
 
 export default function home() {
   const home = document.createElement("div");
-  home.classList.add("home", "flex", "items-center", "flex-col", "overflow-hidden");
+  home.classList.add("home", "flex", "items-center", "flex-col", "overflow-hidden", "bg-blue-200", "m-8", "p-4", "rounded-md", "drop-shadow-xl", "self-center", "w-[90vw]", "max-w-[1200px]");
   home.innerHTML = `
-      <br>
-      <h1 class="font-poiret">Washbear Spa</h1>
-      <h5 class="text-blue-600">Where dirt goes to die...</h5>
       <br>
       <a href="/book"><button class="bg-blue-600 text-black px-4 py-2 rounded-lg">Boka</button></a>
       <br>
@@ -24,8 +21,8 @@ export default function home() {
       <div class="cta-slot"></div>
       <br>
   
-      <section class='testimonials flex flex-col items-center'>
-      <h2>Testimonials</h2>
+      <section class='testimonials flex flex-col items-center max-w-[100%]'>
+      <h2 class="text-sm">Hör vad våra nöjda kunder har att säga!</h2>
   
       </section>
   
@@ -53,7 +50,7 @@ export default function home() {
   
   const carouselContainer = document.createElement("div");
   carouselContainer.classList.add(
-    "carousel-container", "max-w-7xl", "w-5/6", "px-10", "[mask-image:linear-gradient(to_right,_transparent,_black_6%,_black_94%,_transparent)]" 
+    "carousel-container", "w-5/6", "px-10", "[mask-image:linear-gradient(to_right,_transparent,_black_6%,_black_94%,_transparent)]" 
   );
   const carouselTrack = document.createElement("div");
   carouselTrack.classList.add(
@@ -63,7 +60,7 @@ export default function home() {
   let count = 0;
 
   reviews.forEach((review) => {
-    if (review.rating >= 4 && count < 5) {
+    if (review.rating == 5 && count < 7) {
       const card = Card(review);
       carouselTrack.append(card);
       count++;

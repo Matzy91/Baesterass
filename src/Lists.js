@@ -9,12 +9,20 @@ export const treatmentTypes = [
   "För par",
 ];
 
+// För att sortera mellan olika behandlingar
+export const sortOptions = [
+  "Alfabetiskt, A → Ö",
+  "Alfabetiskt, Ö → A",
+  "Pris, högt → lågt",
+  "Pris, lågt → högt",
+]
+
 // För att välja olika behandlingar: visa typ + kostnad
 export const treatmentList = [
   {
     name: "Massage",
     cost: "1000",
-    type: "Massage",
+    type: ["Massage"],
   },
   {
     name: "Parmassage",
@@ -29,22 +37,22 @@ export const treatmentList = [
   {
     name: "Pilates",
     cost: "1350",
-    type: "Träning",
+    type: ["Träning"],
   },
   {
     name: "Meditation",
     cost: "200",
-    type: "Meditation",
+    type: ["Meditation"],
   },
   {
     name: "Parmeditation",
     cost: "400",
-    type: "Meditation",
+    type: ["Meditation", "För par"],
   },
   {
     name: "Lerbad",
     cost: "250",
-    type: "Hudvård",
+    type: ["Hudvård"],
   },
   {
     name: "Lerbad för par",
@@ -54,22 +62,22 @@ export const treatmentList = [
   {
     name: "Hårinpackning",
     cost: "350",
-    type: "Hårvård",
+    type: ["Hårvård"],
   },
   {
     name: "Klippning",
     cost: "1350",
-    type: "Hårvård",
+    type: ["Hårvård"],
   },
   {
     name: "Fotmassage",
     cost: "12",
-    type: "Fotvård",
+    type: ["Fotvård"],
   },
   {
     name: "Amputation",
     cost: "10000",
-    type: "Fotvård",
+    type: ["Fotvård"],
   },
 ];
 
