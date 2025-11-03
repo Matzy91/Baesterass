@@ -89,10 +89,11 @@ h1 {
   color: #888;
 }
 
-button {
+button, .button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.3em 0.6em;
+  margin: 0.3em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -137,13 +138,13 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #000000;
     background-color: #ffffff;
   }
   a:hover {
     color: #747bff;
   }
-  button {
+  button, .button {
     background-color: #f9f9f9;
   }
 }
@@ -152,3 +153,62 @@ button:focus-visible {
   from {left: 0}
   to {left: -500px}
 }
+
+
+/* To be converted to Tailwind in booktest.js */
+
+
+
+/* filterList() */
+.filterContainer {
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 20px;
+  .typeDiv {
+    border-radius: 4px;
+  }
+}
+
+
+/* checkoutList() */
+.treatmentContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin-left: 20px;
+
+}
+.treatmentBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.labelGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding-left: 20px;
+}
+
+.treatmentCheck {
+  width: 30px;
+  margin-left: -30px;
+}
+
+.treatmentLabel {
+  flex: 1;
+}
+
+.treatmentCost {
+  text-align: right;
+  min-width: 60px;
+}
+
+
+
+
+
