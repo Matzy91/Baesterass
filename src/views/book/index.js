@@ -3,6 +3,7 @@ import { treatmentList, treatmentTypes, sortOptions } from "../../Lists";
 import { createButton } from "../../components/button";
 import { renderConfirmedPopup, showPopup, closePopup, cancelAction } from "../../components/confirmPopUp";
 import BookingCalendar from "../../components/BookingCalendar.js";
+import {staffMembers } from "../../data/availabilityTest.js";
 
 export default function generatebook() {
     // ----------------- let's make some divs --------------------- //
@@ -149,7 +150,33 @@ export default function generatebook() {
     const selectedUl = document.createElement("ul"); 
     selectedTreatmentContainer.prepend(selectedTreatmentHeader, selectedUl);
     const selectedDateContainer = document.createElement("div"); // append valt datum och personal i denna
-    
+    selectedDateContainer.classList.add("text-sm", "mb-2");
+
+    // element för datum och personalval
+    const selDateEl = document.createElement("p");
+    const selStaffEl = document.createElement("p");
+    selectedDateContainer.append(selDateEl, selStaffEl);
+
+    function renderSelection({date, specialistId}){
+        const staffName =
+            specialistId
+            ? (staffMembers.find(s => s.id === specialistId).name ?? specialistId)
+            : "";
+
+            selDateEl.textContent =`Datum: ${date || "-"}`;
+            selStaffEl.textContent = `Personal: ${staffName || "-"}`;
+    }
+
+    //Lyssnar om något sker i kalender-komponenten
+    calendar.addEventListener("booking:change", (e) => {
+        renderSelection(e.detail);
+    });
+
+    if(typeof calendar.getSelection === "function") {
+        renderSelection(calendar.getSelection());
+    }
+
+
     totalContainer.classList.add("totalContainer", "inline-flex", "flex");
     totalContainer.innerHTML = "Total kostnad:&nbsp";
     const noCard = document.createElement("div");

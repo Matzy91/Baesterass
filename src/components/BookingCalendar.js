@@ -105,6 +105,7 @@ export default function BookingCalendar() {
     onSelect: ({ date }) => {
       selectedDate = date ? toISO(date) : "";
       renderStaff();
+      emitChange();
     },
   });
 
@@ -114,7 +115,7 @@ export default function BookingCalendar() {
   root.addEventListener("change", (e) => {
     if (e.target.name === "spec") {
       selectedStaffId = e.target.value;
-      nextBtn.disabled = !(selectedDate && selectedStaffId);
+      emitChange();
     }
   });
 
