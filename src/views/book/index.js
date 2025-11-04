@@ -2,6 +2,7 @@ import { doc } from "prettier";
 import { treatmentList, treatmentTypes, sortOptions } from "../../Lists";
 import { createButton } from "../../components/button";
 import { renderConfirmedPopup, showPopup, closePopup, cancelAction } from "../../components/confirmPopUp";
+import BookingCalendar from "../../components/BookingCalendar.js";
 
 export default function generatebook() {
     // ----------------- let's make some divs --------------------- //
@@ -14,8 +15,8 @@ export default function generatebook() {
     
     const calendarContainer = document.createElement("div");
     calendarContainer.classList.add("calendarContainer", "w-[1/3]");
-    // Datumval/kalender ska läggas in i calendarContainer här! 
-    calendarContainer.innerHTML = `<img src="https://img.freepik.com/premium-vector/raccoon-continuous-line-art-drawing_266639-2928.jpg?w=360" alt="racoon">`;
+    const calendar = BookingCalendar();
+    calendarContainer.append(calendar);
     
     const filterContainer = document.createElement("div");
     filterContainer.classList.add("filterContainer", "min-w-full", "flex", "flex-col");
@@ -233,24 +234,4 @@ export default function generatebook() {
     }
     checkoutList();
     return book;
-import BookingCalendar from "../../components/BookingCalendar.js";
-
-export default function book() {
-  const root = document.createElement("div");
-  root.className = "container mx-auto px-4 py-6";
-
-  const wrapper = document.createElement("div");
-  wrapper.className = "max-w-md mx-auto";
-
-  const calendar = BookingCalendar();
-  wrapper.appendChild(calendar);
-
-  root.appendChild(wrapper);
-
-  root.addEventListener("calendar:ready", (e) => {
-    const { date, specialistId } = e.detail;
-    console.log("Valt datum:", date, "Specialist:", specialistId);
-  });
-
-  return root;
 }
