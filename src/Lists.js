@@ -79,6 +79,26 @@ export const treatmentList = [
     cost: "10000",
     type: ["Fotvård"],
   },
+  {
+    name: "Fiskpedikyr",
+    cost: "3500",
+    type: ["Fotvård", "Massage", "Hudvård"],
+  },
+  {
+    name: "Massage med varma stenar",
+    cost: "345",
+    type: ["Massage"],
+  },
+  {
+    name: "Parmassage med varma stenar",
+    cost: "2500",
+    type: ["Massage", "För par"],
+  },
+  {
+    name: "Svensk massage",
+    cost: "1250",
+    type: ["Massage"],
+  },
 ];
 
 // För personal, deras behandlingar och tillgängliga dagar
@@ -88,42 +108,42 @@ export const staffList = [
     treatmentTypes: ["Hårvård", "Fotvård", "Massage"],
     availability: ["Måndag", "Tisdag"],
     imageLink:
-      "https://ichef.bbci.co.uk/ace/standard/960/cpsprodpb/8842/live/eac34360-9847-11ef-9993-f7959d92ab33.jpg",
+    "https://ichef.bbci.co.uk/ace/standard/960/cpsprodpb/8842/live/eac34360-9847-11ef-9993-f7959d92ab33.jpg",
   },
   {
     name: "Craigory",
     treatmentTypes: ["Massage", "Hudvård"],
     availability: ["Onsdag"],
     imageLink:
-      "https://crittercontroloftampa.com/wp-content/uploads/florida-angry-raccoon.jpg",
+    "https://crittercontroloftampa.com/wp-content/uploads/florida-angry-raccoon.jpg",
   },
   {
     name: "T.V. Ättbjörn",
     treatmentTypes: ["Träning", "Meditation", "Hudvård"],
     availability: ["Lördag", "Söndag"],
     imageLink:
-      "https://www.hoo-zoo.com/wp-content/uploads/2022/06/portrait-of-a-raccoon-1200x900.jpeg",
+    "https://www.hoo-zoo.com/wp-content/uploads/2022/06/portrait-of-a-raccoon-1200x900.jpeg",
   },
   {
     name: "Vendela",
     treatmentTypes: ["Meditation", "Träning", "Massage"],
     availability: ["Tisdag", "Torsdag", "Fredag", "Lördag"],
     imageLink:
-      "https://www.barkandwhiskers.com/content/images/2025/01/2023-08-03-nl-raccoons-as-pets.webp",
+    "https://www.barkandwhiskers.com/content/images/2025/01/2023-08-03-nl-raccoons-as-pets.webp",
   },
   {
     name: "Houlaloula",
     treatmentTypes: ["Massage", "Meditation"],
     availability: ["Lördag", "Söndag"],
     imageLink:
-      "https://media.istockphoto.com/photos/little-raccoon-on-tree-picture-id514622028?k=6&m=514622028&s=612x612&w=0&h=oa6bEuRd9EB_D72qJ5UD57dBfnLWz7onQDm6DFJSVLc=",
+    "https://media.istockphoto.com/photos/little-raccoon-on-tree-picture-id514622028?k=6&m=514622028&s=612x612&w=0&h=oa6bEuRd9EB_D72qJ5UD57dBfnLWz7onQDm6DFJSVLc=",
   },
   {
     name: "Zabrina",
     treatmentTypes: ["Fotvård", "Träning", "Massage"],
     availability: ["Tisdag", "Torsdag"],
     imageLink:
-      "https://www.turnerpest.com/wp-content/uploads/2025/04/Raccoon-Babies-in-Florida-300x300.png",
+    "https://www.turnerpest.com/wp-content/uploads/2025/04/Raccoon-Babies-in-Florida-300x300.png",
   },
   {
     name: "Gusten",
@@ -137,14 +157,14 @@ export const staffList = [
     ],
     availability: ["Måndag", "Tisdag"],
     imageLink:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzabpBH0X1F1QQ4XtN8mX8lpvevMn-0mj1vQ&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzabpBH0X1F1QQ4XtN8mX8lpvevMn-0mj1vQ&s",
   },
   {
     name: "Frazi",
     treatmentTypes: ["Massage", "Hudvård"],
     availability: ["Fredag", "Söndag"],
     imageLink:
-      "https://www.scenichudson.org/wp-content/uploads/2024/11/AdobeStock_173371622-1400x935.jpeg",
+    "https://www.scenichudson.org/wp-content/uploads/2024/11/AdobeStock_173371622-1400x935.jpeg",
   },
 ];
 

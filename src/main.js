@@ -8,7 +8,6 @@ import home from "./views/home";
 import book from "./views/book";
 import staffView from "./views/staff";
 import testimonials from "./views/reviews/index.js";
-import jennysTest from "./views/test/booktest.js";
 import treatments from "./views/treatments/index.js";
 import headerHTML from "./views/static/header/index.html?raw";
 import footerHTML from "./views/static/footer/index.html?raw"; 

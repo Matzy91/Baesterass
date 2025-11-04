@@ -21,7 +21,7 @@ export default function generatebook() {
     filterContainer.classList.add("filterContainer", "min-w-full", "flex", "flex-col");
     
     const selectionContainer = document.createElement("div");
-    selectionContainer.classList.add("selectionContainer", "grow")
+    selectionContainer.classList.add("selectionContainer", "grow", "min-w-2/3")
     
     const lowerContainer = document.createElement("div");
     lowerContainer.classList.add("lowerContainer", "flex", "justify-between", "mr-4", "min-h-[307px]");
@@ -135,15 +135,20 @@ export default function generatebook() {
     
     // ------------ Selection & Summary -------------- //
     const treatmentContainer = document.createElement("div");
-    treatmentContainer.classList.add("treatmentContainer", "grow");
+    treatmentContainer.classList.add("treatmentContainer", "min-w-4/6");
     
     const summaryContainer = document.createElement("div");
-    summaryContainer.classList.add("summaryContainer", "flex", "flex-col", "justify-end", "ml-4", "min-w-1/3");
+    summaryContainer.classList.add("summaryContainer", "flex", "flex-col", "justify-end", "ml-4", "min-w-1/4");
     lowerContainer.append(treatmentContainer, summaryContainer);
     
     const totalContainer = document.createElement("div");
-    // här ska datum och valda behandlingar läggas till! också personal kanske?
-
+    const selectedTreatmentContainer = document.createElement("div");
+    selectedTreatmentContainer.innerHTML = `<br><hr>`;
+    const selectedTreatmentHeader = document.createElement("p");
+    const selectedUl = document.createElement("ul"); 
+    selectedTreatmentContainer.prepend(selectedTreatmentHeader, selectedUl);
+    const selectedDateContainer = document.createElement("div"); // append valt datum och personal i denna
+    
     totalContainer.classList.add("totalContainer", "inline-flex", "flex");
     totalContainer.innerHTML = "Total kostnad:&nbsp";
     const noCard = document.createElement("div");
@@ -152,7 +157,7 @@ export default function generatebook() {
     <input type="checkbox" class="noCard-check">
     Betala på plats
     </label>`
-
+    
     const cta = createButton({
         label: "Boka",
         variant: "primary",
@@ -168,7 +173,7 @@ export default function generatebook() {
     });
     cta.classList.add("min-w-fit");
     
-    summaryContainer.append(totalContainer, noCard,cta);
+    summaryContainer.append(selectedTreatmentContainer, selectedDateContainer, totalContainer, noCard,cta);
     
     let totalNumber = document.createElement("p");
     let cost = 0;
@@ -181,16 +186,30 @@ export default function generatebook() {
             const treatmentCheck = document.createElement("input");
             treatmentCheck.setAttribute("type", "checkbox");
             treatmentCheck.classList.add("treatmentCheck");
+            const selectedLi = document.createElement("li");
             treatmentCheck.addEventListener("change", function() {
                 if (treatmentCheck.checked == true){
                     cost = Number(cost) + Number(treatment.cost);
                     totalNumber.textContent = cost.toLocaleString("sv-SE") + ":-";
+                    selectedLi.textContent = treatment.name;
+                    selectedUl.appendChild(selectedLi);
                 }
                 else {
                     cost = Number(cost) - Number(treatment.cost);
-                    totalNumber.textContent = cost.toLocaleString("sv-SE") + ":-"; 
+                    totalNumber.textContent = cost.toLocaleString("sv-SE") + ":-";
+                    selectedUl.removeChild(selectedLi);
+                }
+                if (selectedUl.children.length > 1) {
+                    selectedTreatmentHeader.innerHTML = `<b>Valda behandlingar:<b>`;   
+                }
+                else if (selectedUl.children.length == 1) {
+                    selectedTreatmentHeader.innerHTML = `<b>Vald behandling:</b>`;
+                }
+                else {
+                    selectedTreatmentHeader.innerHTML = ``;
                 }
             })
+            
             const treatmentLabel = document.createElement("label");
             treatmentLabel.textContent = treatment.name;
             treatmentLabel.classList.add("treatmentLabel", "font-medium");
@@ -210,7 +229,7 @@ export default function generatebook() {
             treatmentBox.append(labelGroup, treatmentCost);
             treatmentContainer.append(treatmentBox);
         }
-        totalContainer.append(totalNumber);  
+        totalContainer.appendChild(totalNumber);  
     }
     checkoutList();
     return book;

@@ -19,6 +19,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+li {
+    font-size: 14px;
+    margin-left: 10px;
+    list-style-type: circle;
+    list-style-position: inside;
+ }
+
 
 header {
   text-transform: uppercase;
