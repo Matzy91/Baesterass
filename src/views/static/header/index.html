@@ -1,17 +1,32 @@
-<header>
-  <nav>
-    <ul class="flex content-center gap-4">
-      <li><a href="/home">Hem</a></li>
-      <li><a href="/book">Boka</a></li>
-      <li><a href="">Reviews</a></li>
-      <li>
-        <img
-          src="https://i.pinimg.com/originals/ff/21/c9/ff21c94cf3bee40fd36ef911420106ca.jpg"
-          class="h-12 rounded-full"
-        />
-      </li>
-      <li><a href="/staff">Våra Anställda</a></li>
-      <li><a href="/treatments">Våra Behandlingar</a></li>
-    </ul>
+<header class="flex flex-col items-center">
+  <nav class="px-8">
+    <div class="flex h-20 items-center justify-between">
+      <!-- left side  -->
+      <div class="flex w-48 justify-end gap-6 whitespace-nowrap">
+        <a href="/home" class="hem"></a>
+        <a href="/book">Boka</a>
+        <a href="/testimonials">Reviews</a>
+      </div>
+      <!-- middle -->
+      <div class="mx-8 flex-shrink-0">
+        <a href="/home">
+          <img
+          src="https://img.freepik.com/premium-vector/raccoon-continuous-line-art-drawing_266639-2928.jpg?w=360"
+          class="h-32 w-32 rounded-full scale-x-[-1] relative -z-10" alt="Raccoon Img"
+          />
+        </a>
+      </div>
+      <!-- right side -->
+      <div class="w-48 flex gap-6 justify-start whitespace-nowrap">
+        <a href="/staff">Våra Anställda</a>
+        <a href="/treatments">Behandlingar</a>
+      </div>
+    </div>
   </nav>
+  <div class="text-center">
+    <h1 class="font-poiret"><a href="/home">Washbear Spa</a></h1>
+      <h5 class="text-black text-sm normal-case font-normal">Where dirt goes to die...</h5>
+  </div>
 </header>
+
+<!-- scale-x-[-1]" -->

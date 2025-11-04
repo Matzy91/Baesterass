@@ -16,6 +16,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.15",
     "air-datepicker": "^3.6.0",
+    "@vitejs/plugin-react": "^5.1.0",
     "tailwindcss": "^4.1.15"
   }
 }
