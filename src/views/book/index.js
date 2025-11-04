@@ -1,39 +1,21 @@
+import BookingCalendar from "../../components/BookingCalendar.js";
+
 export default function book() {
-  let count = 1;
+  const root = document.createElement("div");
+  root.className = "container mx-auto px-4 py-6";
 
-  const book = document.createElement("div");
-  book.classList.add("book");
-  book.innerHTML = `
-    <h2>how many boats? BOOK</h2>
-    <h2 id="boatHeading">⛵️</h2>
-    <div class="buttons">
-      <button id="incrementButton">Add boats</button>
-      <button id="decrementButton">Remove boats</button>
-    </div>
-  `;
-  const boatHeading = book.querySelector("#boatHeading");
-  const incrementButton = book.querySelector("#incrementButton");
-  const decrementButton = book.querySelector("#decrementButton");
+  const wrapper = document.createElement("div");
+  wrapper.className = "max-w-md mx-auto";
 
-  if (count === 0) {
-    decrementButton.disabled = true;
-  }
+  const calendar = BookingCalendar();
+  wrapper.appendChild(calendar);
 
-  const updateBoats = () =>
-    (boatHeading.innerHTML =
-      Array.from({ length: count }, (_) => "⛵️").join("") || "no boats");
+  root.appendChild(wrapper);
 
-  incrementButton.addEventListener("click", () => {
-    count++;
-    updateBoats();
-  });
-  decrementButton.addEventListener("click", () => {
-    if (count !== 0) {
-      count--;
-      updateBoats();
-    }
+  root.addEventListener("calendar:ready", (e) => {
+    const { date, specialistId } = e.detail;
+    console.log("Valt datum:", date, "Specialist:", specialistId);
   });
 
-  // i slutändan returneras elementet som skapades med document.createElement("div")
-  return book;
+  return root;
 }
