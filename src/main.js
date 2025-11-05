@@ -11,6 +11,7 @@ import testimonials from "./views/reviews/index.js";
 import treatments from "./views/treatments/index.js";
 import headerHTML from "./views/static/header/index.html?raw";
 import footerHTML from "./views/static/footer/index.html?raw"; 
+import { check } from "prettier";
 
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
@@ -73,18 +74,38 @@ const renderApp = () => {
     app.insertBefore(currentPage, app.querySelector("footer"));
   }
   
-  const homeIcon = makeIcon("home", 25, 25);
-  document.querySelector(".hem").appendChild(homeIcon); 
-  
+  // Generic Icons // 
   const checkIcon = makeIcon("approve", 20, 20);
   const starIcon = makeIcon("star", 20, 20);
   const racoonIcon = makeIcon("raccoon", 20, 20);
   const spaIcon = makeIcon("bubbles", 20, 20);
+  const homeIcon = makeIcon("home", 20, 20);
   
+  // Treatment Icons //
+  const hairIcon = makeIcon("harvard", 30, 30);
+  const coupleIcon = makeIcon("forCouples", 30, 30);
+  const footIcon = makeIcon("fotvard", 30, 30);
+  const massageIcon = makeIcon("massage", 30, 30);
+  const meditationIcon = makeIcon("meditation", 30, 30);
+  const exerciseIcon = makeIcon("traning", 30, 30);
+  const skinIcon = makeIcon("bubbles", 30, 30);
+  
+  document.querySelector(".hem").appendChild(homeIcon); 
   document.querySelector(".bookFooter").prepend(checkIcon);
   document.querySelector(".reviewsFooter").prepend(starIcon);
   document.querySelector(".staffFooter").prepend(racoonIcon);
   document.querySelector(".treatmentsFooter").prepend(spaIcon);
+  
+  let listOfIcons = [];
+  listOfIcons.push(skinIcon, hairIcon, coupleIcon, footIcon, massageIcon, meditationIcon, exerciseIcon);
+  
+  for (let icon of listOfIcons) {
+    let linky = document.createElement("a");
+    linky.href = "/treatments";
+    linky.classList.add("rounded-standard");
+    linky.append(icon);
+    document.querySelector(".menuContainer").append(linky);
+  }
   
 };
 

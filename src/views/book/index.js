@@ -216,7 +216,7 @@ export default function generatebook() {
             treatmentCheck.classList.add("treatmentCheck", "w-[30px]", "ml-[-30px]");
             const selectedLi = document.createElement("li");
             treatmentCheck.addEventListener("change", function() {
-                if (treatmentCheck.checked == true){
+                if (treatmentCheck.checked){
                     cost = Number(cost) + Number(treatment.cost);
                     totalNumber.textContent = cost.toLocaleString("sv-SE") + ":-";
                     selectedLi.textContent = treatment.name;
