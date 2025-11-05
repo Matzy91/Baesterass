@@ -81,10 +81,10 @@ const renderApp = () => {
   const racoonIcon = makeIcon("raccoon", 20, 20);
   const spaIcon = makeIcon("bubbles", 20, 20);
   
-  document.querySelector(".bookFooter").append(checkIcon);
-  document.querySelector(".reviewsFooter").append(starIcon);
-  document.querySelector(".staffFooter").append(racoonIcon);
-  document.querySelector(".treatmentsFooter").append(spaIcon);
+  document.querySelector(".bookFooter").prepend(checkIcon);
+  document.querySelector(".reviewsFooter").prepend(starIcon);
+  document.querySelector(".staffFooter").prepend(racoonIcon);
+  document.querySelector(".treatmentsFooter").prepend(spaIcon);
   
 };
 

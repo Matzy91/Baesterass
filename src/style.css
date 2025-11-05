@@ -1,158 +1,114 @@
 @import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;700&display=swap');
+
 @import "tailwindcss";
 
 @theme {
-  --font-poiret: "Poiret One", sans-serif;
+  
+  /* ↓ Apply these classes to your page's main container ↓ */
+  /* "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar" */
+  
+  /* Colors */
+  --color-light-blue: #b0d9f0;
+  --color-dark-blue: #ADC4D7;
+  --color-light-green: #B1D8B7;
+  --color-dark-green: #739777;
+  --color-light-orange: #FDF5C4;
+  --color-dark-orange: #CB8E66;
+  --color-light-white: #FBF7F4;
+  --color-dark-white: #D3D2C7;
+  
+  --drop-shadow-standard: 0 9px 7px rgb(0 0 0 / 0.1);
+  
+  /* Border Radius */
+  --radius-standard: 0.375rem;
+  
+  /* Margin & Padding */
+  --m-standard: 16px;
+  --p-standard: 16px;
+  
+  /* Fonts */
+  --font-one: "Poiret One", sans-serif; /* För headers & loggan */
+  --font-two: "Quicksand", sans-serif; /* För vanlig text */
+  --font-three: "Montserrat Alternates", sans-serif; /* För annat */
 }
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: var(--color-dark-blue);
+    border-radius: var(--radius-standard);
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-light-white);
+    border-radius: var(--radius-standard);
+    box-shadow: var(--drop-shadow-standard);
+  }
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-dark-white)
+  }
+  .radius-standard {
+    border-radius: var(--radius-standard);
+  }
+  .p-standard {
+    padding: var(--p-standard)
+  }
+  .m-standard {
+    margin: var(--m-standard);
+  }
 }
-li {
-    font-size: 14px;
-    margin-left: 10px;
-    list-style-type: circle;
-    list-style-position: inside;
- }
 
+@layer components {
+  .btn, button, .button {
+    @apply rounded-md px-2 py-1 m-1 text-base cursor-pointer;
+  }
+}
 
-header {
-  text-transform: uppercase;
-  font-weight: bold;
-  
-  display: flex;
-  justify-content: center;
-  nav {
+@layer base {
+  html {
+    font-family: var(--font-two);
+  }
+  #app {
     display: flex;
-    p {
-      display: inline-flex;
-      place-items: center;
-      a {
-        color: black;
-        margin: 10px;
-        background-color: #a7aae49f;
-      }
-    }
+    flex-direction: column;
+    justify-content: center;
   }
-}
-
-a {
-  font-weight: 500;
-  color: rgb(0, 0, 0);
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
-  padding: 2rem;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-button, .button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.3em 0.6em;
-  margin: 0.3em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-.btn {
-  font: inherit;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-}
-
-/* Grön, för “huvudknappar” */
-.btn-primary {
-  background-color: #69c57a;
-  color: #0b2d14;
-}
-
-/* Grå, för “avbryt/stäng”-knappar */
-.btn-cancel {
-  background-color: #ff3232;
-  color: #333;
-}
-
-.accordion-content {
-  display: none;
-}
-
-.accordion-content.active {
-  display: block;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #000000;
-    background-color: #ffffff;
+  * {
+    @apply duration-500;
   }
-  a:hover {
-    color: #747bff;
+  body {
+    overflow: hidden;
+  }
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+  li {
+    @apply text-[14px] ml-[10px] list-inside list-disc;
+  }
+  a {
+    @apply font-medium text-black border border-transparent rounded transition-all;
+  }
+  a:not(.button):not(.logoImg):not(button):not(h1 a):not(h2 a):not(h3 a):not(h4 a):not(h5 a):not(h6 a):hover {
+    @apply border-[#505050];
+  }
+  .btn-primary {
+    background-color: var(--color-dark-orange);
   }
   button, .button {
-    background-color: #f9f9f9;
+    @apply font-medium text-black box-border border border-transparent transition-all;
+    background-color: var(--color-light-white);
+    box-shadow: var(--drop-shadow-standard);
+  }
+  button:hover, .button:hover {
+    @apply border-black;
+    background-color: var(--color-light-orange);
+  }
+  img:hover {
+    @apply cursor-pointer;
   }
 }
 
@@ -161,61 +117,9 @@ button:focus-visible {
   to {left: -500px}
 }
 
-
-/* To be converted to Tailwind in booktest.js */
-
+/* ------------------------------------ */
 
 
-/* filterList() */
-.filterContainer {
-  font-size: 12px;
-  display: inline-flex;
-  justify-content: center;
-  border-radius: 20px;
-  .typeDiv {
-    border-radius: 4px;
-  }
+.accordion-content.active {
+  display: block;
 }
-
-
-/* checkoutList() */
-.treatmentContainer {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin-left: 20px;
-
-}
-.treatmentBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.labelGroup {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  padding-left: 20px;
-}
-
-.treatmentCheck {
-  width: 30px;
-  margin-left: -30px;
-}
-
-.treatmentLabel {
-  flex: 1;
-}
-
-.treatmentCost {
-  text-align: right;
-  min-width: 60px;
-}
-
-
-
-
-

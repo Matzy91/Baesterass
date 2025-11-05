@@ -15,7 +15,7 @@ export default function AccordionItem({ title, items }) {
   header.append(h3, expandIcon);
 
   const content = document.createElement("div");
-  content.classList.add("accordion-content", "border-b");
+  content.classList.add("accordion-content", "border-b", "hidden");
 
   items.forEach((treatment) => {
     const div = document.createElement("div");
