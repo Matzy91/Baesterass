@@ -4,7 +4,7 @@ function getInitials(name) {
 }
 export default function Card({ rating, text, name }) {
   const card = document.createElement("div");
-  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-amber-50", "hover:bg-amber-100", "duration-150", "w-xs");
+  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-amber-50", "hover:bg-amber-100", "duration-150", "w-xs", "p-standard");
 
   const customer = document.createElement("div");
   customer.classList.add("flex", "gap-4", "items-center", "mt-auto");

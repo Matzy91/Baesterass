@@ -1,6 +1,6 @@
 export default function Card({ name, treatments, availability, imageLink }) {
   const card = document.createElement("div");
-  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-orange-400", "p-4", "rounded");
+  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-orange-400", "p-standard", "rounded");
 
   const avatar = document.createElement("img");
   avatar.src = imageLink;

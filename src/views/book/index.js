@@ -8,11 +8,11 @@ import {staffMembers } from "../../data/availabilityTest.js";
 export default function generatebook() {
     // ----------------- let's make some divs --------------------- //
     const book = document.createElement("div");
-    book.classList.add("book", "flex", "items-center", "flex-col", "overflow-hidden", "bg-blue-200", "m-8", "p-4", "rounded-md", "drop-shadow-xl", "self-center", "w-[90vw]", "max-w-[1200px]");
-    book.innerHTML = `<h1 class="font-poiret text-center pt-4 mb-4">Välj och boka behandling</h1>`; 
+    book.classList.add("book", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
+    book.innerHTML = `<h1 class="font-one text-center pb-1">Välj och boka behandling</h1>`; 
     
     const bookingContainer = document.createElement("div");
-    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1200px]", "justify-center");
+    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1180px]", "justify-center");
     
     const calendarContainer = document.createElement("div");
     calendarContainer.classList.add("calendarContainer", "w-[1/3]");
@@ -20,7 +20,7 @@ export default function generatebook() {
     calendarContainer.append(calendar);
     
     const filterContainer = document.createElement("div");
-    filterContainer.classList.add("filterContainer", "min-w-full", "flex", "flex-col");
+    filterContainer.classList.add("filterContainer", "min-w-full", "flex", "flex-col", "inline-flex", "justify-center", "text-[12px]");
     
     const selectionContainer = document.createElement("div");
     selectionContainer.classList.add("selectionContainer", "grow", "min-w-2/3")
@@ -32,11 +32,11 @@ export default function generatebook() {
     bookingContainer.append(calendarContainer, selectionContainer);
     
     const filterTop = document.createElement("div");
-    filterTop.classList.add("filter-top", "grid", "bg-blue-100", "rounded-md", "p-1", "grid-cols-4", "[&>*]:shadow-sm/20");
+    filterTop.classList.add("filter-top", "grid", "bg-blue-100", "rounded-md", "p-[3px]", "grid-cols-4", "[&>*]:shadow-sm/20", "items-center");
     const filterBtm = document.createElement("div");
     filterBtm.classList.add("filter-btm-left","[&>*]:shadow-sm/20", "rounded-md", "p-1", "justify-end", "flex");
     const dropDown = document.createElement("select");
-    dropDown.classList.add("dropDown", "button");
+    dropDown.classList.add("dropDown", "button", "text-[12px]");
     
     // ----------------- Sorting --------------------- //
     for (const option of sortOptions) {
@@ -47,7 +47,7 @@ export default function generatebook() {
     
     const sortBtn = document.createElement("button");
     sortBtn.textContent = "Sortera";
-    sortBtn.classList = ("sortBtn", "max-h-fit");
+    sortBtn.classList = ("sortBtn", "max-h-fit", "text-[12px]");
     
     filterBtm.append(dropDown, sortBtn);
     filterContainer.append(filterTop, filterBtm);
@@ -55,7 +55,7 @@ export default function generatebook() {
     const boxArray = [];
     for (const type of treatmentTypes) {
         const typeDiv = document.createElement("button");
-        typeDiv.classList.add("typeDiv", "flex-none", "basis-1/4", "text-center", "py-2");
+        typeDiv.classList.add("typeDiv", "flex", "basis-1/4", "text-center", "py-[3px]", "text-[12px]", "h-[26px]", "items-center", "justify-center", "min-w-[fit-content]");
         typeDiv.textContent = type;
         filterTop.append(typeDiv);
         boxArray.push(typeDiv);
@@ -68,7 +68,7 @@ export default function generatebook() {
             };
             const selectedType = box.textContent;
             filterTreatments(selectedType);
-            box.style.backgroundColor = "#ddddddff";
+            box.style.backgroundColor = "var(--color-dark-white)";
         });
     };
     
@@ -109,7 +109,7 @@ export default function generatebook() {
     // ----------------- Filtering --------------------- //
     book.append(bookingContainer);  
     const clearBtn = document.createElement("button");
-    clearBtn.classList.add("m-2", "clearBtn", "flex-none", "basis-1/4", "text-center", "py-2", "shadow-sm/20", "uppercase", "underline");
+    clearBtn.classList.add("clearBtn", "flex", "basis-1/4", "text-center", "py-2", "shadow-sm/20", "uppercase", "underline", "text-[12px]", "h-[26px]", "items-center", "justify-center", "min-w-[fit-content]");
     clearBtn.textContent = "Rensa filter";
     // should this also clear any checked boxes???? perhaps 
     filterTop.append(clearBtn);
@@ -137,7 +137,7 @@ export default function generatebook() {
     
     // ------------ Selection & Summary -------------- //
     const treatmentContainer = document.createElement("div");
-    treatmentContainer.classList.add("treatmentContainer", "min-w-4/6");
+    treatmentContainer.classList.add("treatmentContainer", "min-w-4/6", "flex", "flex-col");
     
     const summaryContainer = document.createElement("div");
     summaryContainer.classList.add("summaryContainer", "flex", "flex-col", "justify-end", "ml-4", "min-w-1/4");
@@ -184,7 +184,7 @@ export default function generatebook() {
     <label class="text-sm">
     <input type="checkbox" class="noCard-check">
     Betala på plats
-    </label>`
+    </label>`;
     
     const cta = createButton({
         label: "Boka",
@@ -206,14 +206,14 @@ export default function generatebook() {
     let totalNumber = document.createElement("p");
     let cost = 0;
     totalNumber.append(cost, ":-");
-    totalNumber.classList.add("font-bold");
+    totalNumber.classList.add("font-extrabold");
     
     function checkoutList() {
         treatmentContainer.innerHTML = "";
         for (const treatment of treatmentList) {
             const treatmentCheck = document.createElement("input");
             treatmentCheck.setAttribute("type", "checkbox");
-            treatmentCheck.classList.add("treatmentCheck");
+            treatmentCheck.classList.add("treatmentCheck", "w-[30px]", "ml-[-30px]");
             const selectedLi = document.createElement("li");
             treatmentCheck.addEventListener("change", function() {
                 if (treatmentCheck.checked == true){
@@ -240,20 +240,20 @@ export default function generatebook() {
             
             const treatmentLabel = document.createElement("label");
             treatmentLabel.textContent = treatment.name;
-            treatmentLabel.classList.add("treatmentLabel", "font-medium");
+            treatmentLabel.classList.add("treatmentLabel", "font-bold", "flex-1");
             
             const labelGroup = document.createElement("div");
-            labelGroup.classList.add("labelGroup", "items-center");
+            labelGroup.classList.add("labelGroup", "items-center", "flex", "flex-1", "gap-[10px]", "ml-[30px]");
             treatmentLabel.prepend(treatmentCheck);
             labelGroup.append(treatmentLabel);
             
             const treatmentCost = document.createElement("p");
             treatmentCost.textContent = Number(treatment.cost).toLocaleString("sv-SE") + ":-";
-            treatmentCost.classList.add("treatmentCost");
+            treatmentCost.classList.add("treatmentCost", "text-right", "min-w-[60px]");
             
             const treatmentBox = document.createElement("div");
             treatmentBox.dataset.type = treatment.type.join(",");
-            treatmentBox.classList.add("treatmentBox");
+            treatmentBox.classList.add("treatmentBox", "flex", "flex-row", "items-start");
             treatmentBox.append(labelGroup, treatmentCost);
             treatmentContainer.append(treatmentBox);
         }

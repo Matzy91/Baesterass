@@ -26,7 +26,6 @@ export function makeIcon(type, width = 25, height = 25) {
     icon.width = width;
     icon.height = height;
     icon.alt = "dis be an icon";
-    
     return icon;
 }
 
