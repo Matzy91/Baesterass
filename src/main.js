@@ -34,7 +34,7 @@ const getCurrentPage = () => {
     default:
     return (window.location.pathname = "/home");
   }
-};
+}; 
 
 // document.querySelector("#app").innerHTML = `
 //   <div>
@@ -90,7 +90,7 @@ const renderApp = () => {
   const exerciseIcon = makeIcon("traning", 30, 30);
   const skinIcon = makeIcon("bubbles", 30, 30);
   
-  document.querySelector(".hem").appendChild(homeIcon); 
+  document.querySelector(".hem").append(homeIcon); 
   document.querySelector(".bookFooter").prepend(checkIcon);
   document.querySelector(".reviewsFooter").prepend(starIcon);
   document.querySelector(".staffFooter").prepend(racoonIcon);

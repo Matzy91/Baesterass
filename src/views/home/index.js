@@ -9,7 +9,7 @@ import { createButton } from "../../components/button.js";
 
 export default function home() {
   const home = document.createElement("div");
-  home.classList.add("home", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
+  home.classList.add("home", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "max-h-[70vh]", "h-[fit-content]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
   home.innerHTML = `
       <div class="bg-white/75 flex items-center flex-col p-7 rounded-standard">
     <p class="text-lg text-center font-medium">Välkommen till <span class="font-one font-extrabold uppercase">Washbear Spa</span>, vårt avslappnade paradis i Björnlunda, precis utanför Gnesta.<br>

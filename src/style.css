@@ -7,7 +7,7 @@
 @theme {
   
   /* ↓ Apply these classes to your page's main container ↓ */
-  /* "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar" */
+  /* "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "max-h-[70vh]", "h-[fit-content]", "overflow-y-auto", "overflow-x-hidden", "scrollbar" */
   
   /* Colors */
   --color-light-blue: #b0d9f0;
@@ -123,3 +123,4 @@
 .accordion-content.active {
   display: block;
 }
+
