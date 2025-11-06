@@ -3,10 +3,25 @@ import iconList from "./icon";
 
 export default function AccordionItem({ title, items }) {
   const item = document.createElement("div");
-  item.classList.add("accordion-item");
+  item.classList.add(
+    "accordion-item",
+    "border-b",
+    "last:border-b-0",
+    "first:rounded-t-md",
+    "last:rounded-b-md",
+    "overflow-hidden",
+  );
 
   const header = document.createElement("div");
-  header.classList.add("accordion-header", "flex", "gap-2", "border-b");
+  header.classList.add(
+    "accordion-header",
+    "flex",
+    "gap-2",
+
+    "justify-between",
+    "p-5",
+    "hover:bg-[var(--color-light-orange)]",
+  );
   const h3 = document.createElement("h3");
   const expandIcon = makeIcon("down", 25, 25);
   expandIcon.classList.add("accordion-icon");
@@ -15,7 +30,14 @@ export default function AccordionItem({ title, items }) {
   header.append(h3, expandIcon);
 
   const content = document.createElement("div");
-  content.classList.add("accordion-content", "border-b", "hidden");
+  content.classList.add(
+    "accordion-content",
+    "hidden",
+    "p-5",
+    "gap-4",
+    "flex-col",
+    "bg-[var(--color-light-white)]",
+  );
 
   items.forEach((treatment) => {
     const div = document.createElement("div");

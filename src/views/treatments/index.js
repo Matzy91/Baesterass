@@ -4,13 +4,13 @@ import AccordionItem from "../../components/treatmentAccordion.js";
 
 export default function treatments() {
   const treatments = document.createElement("main");
-  treatments.classList.add("treatments");
+  treatments.classList.add("treatments","flex", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
   treatments.innerHTML = `
-    <h1>Behandlingar</h1>
+    <h1 class='font-one text-center pb-1'>Behandlingar</h1>
   `;
 
   const accordion = document.createElement("article");
-  accordion.classList.add("accordion");
+  accordion.classList.add("accordion", 'bg-blue-100', 'rounded-md', 'm-2');
   treatments.append(accordion);
 
   treatmentTypes.forEach((type) => {

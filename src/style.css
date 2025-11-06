@@ -5,7 +5,7 @@
 @import "tailwindcss";
 
 @theme {
-  
+
   /* ↓ Apply these classes to your page's main container ↓ */
   /* "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "max-h-[70vh]", "h-[fit-content]", "overflow-y-auto", "overflow-x-hidden", "scrollbar" */
   
@@ -18,16 +18,16 @@
   --color-dark-orange: #CB8E66;
   --color-light-white: #FBF7F4;
   --color-dark-white: #D3D2C7;
-  
+
   --drop-shadow-standard: 0 9px 7px rgb(0 0 0 / 0.1);
-  
+
   /* Border Radius */
   --radius-standard: 0.375rem;
-  
+
   /* Margin & Padding */
   --m-standard: 16px;
   --p-standard: 16px;
-  
+
   /* Fonts */
   --font-one: "Poiret One", sans-serif; /* För headers & loggan */
   --font-two: "Quicksand", sans-serif; /* För vanlig text */
@@ -121,6 +121,6 @@
 
 
 .accordion-content.active {
-  display: block;
+  display: flex;
 }
 
