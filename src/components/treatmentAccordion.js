@@ -23,6 +23,7 @@ export default function AccordionItem({ title, items }) {
     "hover:bg-[var(--color-light-orange)]",
   );
   const h3 = document.createElement("h3");
+  h3.classList.add("font-bold");
   const expandIcon = makeIcon("down", 25, 25);
   expandIcon.classList.add("accordion-icon");
   h3.textContent = title;
@@ -43,11 +44,11 @@ export default function AccordionItem({ title, items }) {
     const div = document.createElement("div");
     div.classList.add("treatment-item");
     const nameP = document.createElement("p");
-    nameP.textContent = treatment.name;
+    nameP.innerHTML = `<a href="/book" class="font-extrabold">${treatment.name}</a>`;
 
     const costP = document.createElement("p");
-    costP.textContent = `Från ${treatment.cost} SEK`;
-
+    const localizedCost = Number(treatment.cost);
+    costP.textContent = `Från ${localizedCost.toLocaleString("sv-SE")} SEK`;
     div.append(nameP, costP);
 
     content.appendChild(div);

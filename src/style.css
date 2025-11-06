@@ -90,7 +90,7 @@
     @apply text-[14px] ml-[10px] list-inside list-disc;
   }
   a {
-    @apply font-medium text-black border border-transparent rounded transition-all;
+    @apply font-medium text-black border border-transparent rounded transition-all underline decoration-[1px] underline-offset-[2px];
   }
   a:not(.button):not(.logoImg):not(button):not(h1 a):not(h2 a):not(h3 a):not(h4 a):not(h5 a):not(h6 a):hover {
     @apply border-[#505050];

@@ -1,4 +1,4 @@
-import { doc } from "prettier";
+import { check, doc } from "prettier";
 import { treatmentList, treatmentTypes, sortOptions } from "../../Lists";
 import { createButton } from "../../components/button";
 import { renderConfirmedPopup, showPopup, closePopup, cancelAction } from "../../components/confirmPopUp";
@@ -149,36 +149,42 @@ export default function generatebook() {
     selectedTreatmentHeader.innerHTML = `<b>Vald behandling:<b>`;
     const selectedUl = document.createElement("ul"); 
     selectedTreatmentContainer.prepend(selectedTreatmentHeader, selectedUl);
-    const selectedDateContainer = document.createElement("div"); // append valt datum och personal i denna
+    const selectedDateContainer = document.createElement("div");
     selectedDateContainer.classList.add("mb-2", "text-sm", "selectedDateContainer", "mb-[20px]");
     selectedDateContainer.innerHTML = `<hr>`;
-
-
+    
     // element för datum och personalval
     const selDateEl = document.createElement("p");
     const selStaffEl = document.createElement("p");
     selectedDateContainer.prepend(selDateEl, selStaffEl);
-
-    function renderSelection({date, specialistId}){
-        const staffName =
-            specialistId
-            ? (staffMembers.find(s => s.id === specialistId).name ?? specialistId)
-            : "";
-
-            selDateEl.innerHTML =`<span class="text-base font-bold">Datum:</span> ${date || ""}`;
-            selStaffEl.innerHTML = `<span class="text-base font-bold">Personal:</span> ${staffName || ""}`;
+    
+    let currentSelection = {
+        date: null,
+        specialistId: null,
     }
-
+    
+    function renderSelection({date, specialistId}){
+        currentSelection.date = date;
+        currentSelection.specialistId = specialistId;
+        
+        const staffName =
+        specialistId
+        ? (staffMembers.find(s => s.id === specialistId).name ?? specialistId)
+        : "";
+        
+        selDateEl.innerHTML =`<span class="text-base font-bold">Datum:</span> ${date || ""}`;
+        selStaffEl.innerHTML = `<span class="text-base font-bold">Specialist:</span> ${staffName || ""}`;
+    }
+    
     //Lyssnar om något sker i kalender-komponenten
     calendar.addEventListener("booking:change", (e) => {
         renderSelection(e.detail);
     });
-
+    
     if(typeof calendar.getSelection === "function") {
         renderSelection(calendar.getSelection());
     }
-
-
+    
     totalContainer.classList.add("totalContainer", "inline-flex", "flex");
     totalContainer.innerHTML = "Total kostnad:&nbsp";
     const noCard = document.createElement("div");
@@ -188,22 +194,85 @@ export default function generatebook() {
     Betala på plats
     </label>`;
     
+    summaryContainer.append(selectedTreatmentContainer, selectedDateContainer, totalContainer, noCard);
     const cta = createButton({
         label: "Boka",
         variant: "primary",
         onClick: () => {
-            if (document.querySelector(".noCard-check").checked == true) {
-                renderConfirmedPopup();
-                showPopup();
+            const noCardChecked = document.querySelector(".noCard-check").checked;
+            const anyTreatmentChecked = Array.from(document.querySelectorAll(".treatmentCheck")).some(checkBox => checkBox.checked);
+            const { date, specialistId } = currentSelection;
+            const selectedDate = currentSelection.date;
+            
+            renderConfirmedPopup();
+            showPopup();
+            
+            const popupMain = document.querySelector(".popupMain");
+            const confirmHeader = document.querySelector(".confirmHeader");
+            const chosenStaff = document.querySelector(".chosenStaff");
+            const chosenDate = document.querySelector(".chosenDate");
+            const confirmButton = document.querySelector(".confirmButton");
+            const checkMark = document.querySelector(".checkMark");
+            
+            confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
+            confirmButton.classList.add("bg-dark-green", "hover:bg-light-green")
+            
+            if (!anyTreatmentChecked) {
+                console.log("Choose 1 - you're missing the treatment")
+                confirmHeader.textContent = "Obs!";
+                chosenStaff.textContent = "Du måste välja minst 1 behandling innan du bokar.";
+                confirmButton.textContent = "OK";
+                confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
+                confirmButton.classList.add("bg-dark-green", "hover:bg-light-green");
+                popupMain.removeChild(chosenDate);
+                popupMain.removeChild(checkMark);
+            }
+            else if (!selectedDate && anyTreatmentChecked) {
+                console.log("Choose date - youve checked treatment but no date")
+                confirmHeader.textContent = "Obs!";
+                chosenStaff.textContent = "Du måste välja ett datum för att gå vidare.";
+                confirmButton.textContent = "OK";
+                confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
+                confirmButton.classList.add("bg-dark-green", "hover:bg-light-green");
+                popupMain.removeChild(chosenDate);
+                popupMain.removeChild(checkMark);
+            }
+            else if (selectedDate && anyTreatmentChecked && !noCardChecked) {
+                console.log("Accept card - youve checked date and treatment but not accepted card")
+                confirmHeader.textContent = "Obs!";
+                chosenStaff.textContent = "Vi godkänner tyvärr inte kortbetalningar - välj att betala på plats för att gå vidare.";
+                confirmButton.textContent = "OK";
+                confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
+                confirmButton.classList.add("bg-dark-green", "hover:bg-light-green");
+                popupMain.removeChild(chosenDate);
+                popupMain.removeChild(checkMark);
+            }
+            else if (selectedDate && anyTreatmentChecked && noCardChecked) {
+                console.log("success, you've booked!")
+                confirmHeader.innerHTML = `Bokning bekräftad!`;
+
+                const selectedTreatments = Array.from(document.querySelectorAll(".treatmentCheck:checked")).map(checkBox => checkBox.closest(".labelGroup").querySelector(".treatmentLabel").textContent);
+                const treatmentListString = selectedTreatments.join(", ");
+
+                chosenStaff.innerHTML = `<b>Vald behandling:</b><br>${treatmentListString}<br><b>Vald specialist:</b><br>${specialistId}`;
+                chosenDate.innerHTML = `<b>Datum:</b><br>${date}`;
+                confirmButton.textContent = "Ångra";
+                confirmButton.classList.remove("bg-dark-green", "hover:bg-light-green");
+                confirmButton.classList.add("bg-red-600", "hover:bg-red-700");
             }
             else {
-                alert("Vi godkänner tyvärr inte kortbetalningar - välj att betala på plats för att gå vidare.")
+                console.log("you've missed something")
             }
         }
     });
-    cta.classList.add("min-w-fit");
     
-    summaryContainer.append(selectedTreatmentContainer, selectedDateContainer, totalContainer, noCard,cta);
+    
+    
+    
+    
+    cta.classList.add("min-w-fit");
+    summaryContainer.append(cta);
+    
     
     let totalNumber = document.createElement("p");
     let cost = 0;
