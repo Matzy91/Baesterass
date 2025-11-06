@@ -2,51 +2,63 @@ import "./style.css";
 import javascriptLogo from "./javascript.svg";
 import viteLogo from "/vite.svg";
 import { setupCounter } from "./counter.js";
-
+import iconList, { makeIcon } from "./components/icon.js";
 import about from "./views/about/index.js";
 import home from "./views/home";
 import book from "./views/book";
+import staffView from "./views/staff";
+import testimonials from "./views/reviews/index.js";
+import treatments from "./views/treatments/index.js";
 import headerHTML from "./views/static/header/index.html?raw";
-import footerHTML from "./views/static/footer/index.html?raw";
+import footerHTML from "./views/static/footer/index.html?raw"; 
+import { check } from "prettier";
 
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
-
+  
   switch (currentPage) {
     case "/home":
-      return home();
+    return home();
     case "/about":
-      return about();
+    return about();
     case "/book":
-      return book();
+    return book();
+    case "/staff":
+    return staffView();
+    case "/treatments":
+    return treatments();
+    case "/testimonials":
+    return testimonials();
+    case "/jennysTest":
+    return jennysTest();
     default:
-      return (window.location.pathname = "/home");
+    return (window.location.pathname = "/home");
   }
 };
 
-document.querySelector("#app").innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`;
+// document.querySelector("#app").innerHTML = `
+//   <div>
+//     <a href="https://vite.dev" target="_blank">
+//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
+//     </a>
+//     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+//       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
+//     </a>
+//     <h1>Hello Vite!</h1>
+//     <div class="card">
+//       <button id="counter" type="button"></button>
+//     </div>
+//     <p class="read-the-docs">
+//       Click on the Vite logo to learn more
+//     </p>
+//   </div>
+// `;
 
-setupCounter(document.querySelector("#counter"));
+// setupCounter(document.querySelector("#counter"));
 
 const renderApp = () => {
   const currentPage = getCurrentPage();
-
+  
   if (typeof currentPage === "string") {
     app.innerHTML = `
      ${headerHTML}
@@ -58,9 +70,43 @@ const renderApp = () => {
         ${headerHTML}
         ${footerHTML}
         `;
-
+    
     app.insertBefore(currentPage, app.querySelector("footer"));
   }
+  
+  // Generic Icons // 
+  const checkIcon = makeIcon("approve", 20, 20);
+  const starIcon = makeIcon("star", 20, 20);
+  const racoonIcon = makeIcon("raccoon", 20, 20);
+  const spaIcon = makeIcon("bubbles", 20, 20);
+  const homeIcon = makeIcon("home", 20, 20);
+  
+  // Treatment Icons //
+  const hairIcon = makeIcon("harvard", 30, 30);
+  const coupleIcon = makeIcon("forCouples", 30, 30);
+  const footIcon = makeIcon("fotvard", 30, 30);
+  const massageIcon = makeIcon("massage", 30, 30);
+  const meditationIcon = makeIcon("meditation", 30, 30);
+  const exerciseIcon = makeIcon("traning", 30, 30);
+  const skinIcon = makeIcon("bubbles", 30, 30);
+  
+  document.querySelector(".hem").appendChild(homeIcon); 
+  document.querySelector(".bookFooter").prepend(checkIcon);
+  document.querySelector(".reviewsFooter").prepend(starIcon);
+  document.querySelector(".staffFooter").prepend(racoonIcon);
+  document.querySelector(".treatmentsFooter").prepend(spaIcon);
+  
+  let listOfIcons = [];
+  listOfIcons.push(skinIcon, hairIcon, coupleIcon, footIcon, massageIcon, meditationIcon, exerciseIcon);
+  
+  for (let icon of listOfIcons) {
+    let linky = document.createElement("a");
+    linky.href = "/treatments";
+    linky.classList.add("rounded-standard");
+    linky.append(icon);
+    document.querySelector(".menuContainer").append(linky);
+  }
+  
 };
 
 renderApp();
@@ -84,7 +130,7 @@ renderApp();
 // // för att ändra pathen kan du t.ex. skapa en anchor tag med href="/home"
 // // "/home" kommer då att läggas till i url:en
 // const getCurrentPage = () => {
-//   const currentPage = window.location.pathname;
+  //   const currentPage = window.location.pathname;
 
 //   switch (currentPage) {
 //     case "/home":
@@ -103,7 +149,7 @@ renderApp();
 // // funktionen som renderar appen. kommer behöva köras om varje gång sidan ska omrenderas
 // // detta är grunden i hur man gör statiska html-sidor till interaktiva applikationer
 // const renderApp = () => {
-//   const currentPage = getCurrentPage();
+  //   const currentPage = getCurrentPage();
 
 //   if (typeof currentPage === "string") {
 //     app.innerHTML = `
@@ -112,7 +158,7 @@ renderApp();
 //       ${footer()}
 //     `;
 //   } else {
-//     app.innerHTML = `
+  //     app.innerHTML = `
 //         ${headerHTML}
 //         ${footer()}
 //         `;

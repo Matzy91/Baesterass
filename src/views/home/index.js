@@ -5,12 +5,11 @@ import {
 } from "../../components/confirmPopUp";
 import Card from "../../components/reviewcard";
 import { reviews } from "../../Lists.js";
-import { iconHTML } from "../../components/icon.js";
 import { createButton } from "../../components/button.js";
 
 export default function home() {
   const home = document.createElement("div");
-  home.classList.add("home");
+  home.classList.add("home", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
   home.innerHTML = `
       <div class="bg-white/75 flex items-center flex-col p-7 rounded-standard">
     <p class="text-lg text-center font-medium">Välkommen till <span class="font-one font-extrabold uppercase">Washbear Spa</span>, vårt avslappnade paradis i Björnlunda, precis utanför Gnesta.<br>
@@ -55,12 +54,24 @@ export default function home() {
   let count = 0;
   
   reviews.forEach((review) => {
-    const card = Card(review);
-    reviewContainer.append(card);
+    if (review.rating == 5 && count < 7) {
+      const card = Card(review);
+      carouselTrack.append(card);
+      count++;
+    }
   });
 
-  home.querySelector(".testimonials").append(reviewContainer);
-  document.body.insertAdjacentHTML("beforeend", iconHTML);
-
+  
+  home.querySelector(".testimonials").append(carouselContainer);
+  home.querySelector(".carousel-container").append(carouselTrack);
+  home.querySelectorAll(".mt-auto").forEach(p => {
+    p.classList.remove("mt-auto");
+    p.classList.add("mt-[1px]");
+  });
+  home.querySelectorAll(".card").forEach(card => {
+    card.classList.remove("gap-4");
+    card.classList.add("gap-2", "text-[13px]", "max-w-[230px]", "justify-between");
+    
+  })
   return home;
 }
