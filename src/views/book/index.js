@@ -8,11 +8,11 @@ import {staffMembers } from "../../data/availabilityTest.js";
 export default function generatebook() {
     // ----------------- let's make some divs --------------------- //
     const book = document.createElement("div");
-    book.classList.add("book", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
+    book.classList.add("book", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "max-h-[70vh]", "h-[fit-content]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
     book.innerHTML = `<h1 class="font-one text-center pb-1">Välj och boka behandling</h1>`; 
     
     const bookingContainer = document.createElement("div");
-    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1180px]", "justify-center");
+    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1180px]", "justify-center", "mt-[10px]");
     
     const calendarContainer = document.createElement("div");
     calendarContainer.classList.add("calendarContainer", "w-[1/3]");
@@ -145,17 +145,19 @@ export default function generatebook() {
     
     const totalContainer = document.createElement("div");
     const selectedTreatmentContainer = document.createElement("div");
-    selectedTreatmentContainer.innerHTML = `<br><hr>`;
     const selectedTreatmentHeader = document.createElement("p");
+    selectedTreatmentHeader.innerHTML = `<b>Vald behandling:<b>`;
     const selectedUl = document.createElement("ul"); 
     selectedTreatmentContainer.prepend(selectedTreatmentHeader, selectedUl);
     const selectedDateContainer = document.createElement("div"); // append valt datum och personal i denna
-    selectedDateContainer.classList.add("text-sm", "mb-2");
+    selectedDateContainer.classList.add("mb-2", "text-sm", "selectedDateContainer", "mb-[20px]");
+    selectedDateContainer.innerHTML = `<hr>`;
+
 
     // element för datum och personalval
     const selDateEl = document.createElement("p");
     const selStaffEl = document.createElement("p");
-    selectedDateContainer.append(selDateEl, selStaffEl);
+    selectedDateContainer.prepend(selDateEl, selStaffEl);
 
     function renderSelection({date, specialistId}){
         const staffName =
@@ -163,8 +165,8 @@ export default function generatebook() {
             ? (staffMembers.find(s => s.id === specialistId).name ?? specialistId)
             : "";
 
-            selDateEl.textContent =`Datum: ${date || "-"}`;
-            selStaffEl.textContent = `Personal: ${staffName || "-"}`;
+            selDateEl.innerHTML =`<span class="text-base font-bold">Datum:</span> ${date || ""}`;
+            selStaffEl.innerHTML = `<span class="text-base font-bold">Personal:</span> ${staffName || ""}`;
     }
 
     //Lyssnar om något sker i kalender-komponenten
@@ -230,11 +232,8 @@ export default function generatebook() {
                 if (selectedUl.children.length > 1) {
                     selectedTreatmentHeader.innerHTML = `<b>Valda behandlingar:<b>`;   
                 }
-                else if (selectedUl.children.length == 1) {
-                    selectedTreatmentHeader.innerHTML = `<b>Vald behandling:</b>`;
-                }
                 else {
-                    selectedTreatmentHeader.innerHTML = ``;
+                    selectedTreatmentHeader.innerHTML = `<b>Vald behandling:<b>`;
                 }
             })
             

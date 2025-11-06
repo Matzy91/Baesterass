@@ -73,7 +73,7 @@ export default function BookingCalendar() {
     const list = getStaffForDate(selectedDate);
 
     if (!list.length) {
-      staffEl.innerHTML = `<p>Inga frisörer tillgängliga för ${selectedDate}.</p>`;
+      staffEl.innerHTML = `<p>Inga specialister tillgängliga för ${selectedDate}.</p>`;
       selectedStaffId = "";
       emitChange();
       return;

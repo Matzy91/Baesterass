@@ -9,7 +9,7 @@ import { createButton } from "../../components/button.js";
 
 export default function home() {
   const home = document.createElement("div");
-  home.classList.add("home", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "h-[70vh]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
+  home.classList.add("home", "flex", "items-center", "flex-col", "bg-light-blue", "p-standard", "rounded-standard", "drop-shadow-standard", "self-center", "w-[90vw]", "max-w-[1200px]", "max-h-[70vh]", "h-[fit-content]", "overflow-y-auto", "overflow-x-hidden", "scrollbar");
   home.innerHTML = `
       <div class="bg-white/75 flex items-center flex-col p-7 rounded-standard">
     <p class="text-lg text-center font-medium">Välkommen till <span class="font-one font-extrabold uppercase">Washbear Spa</span>, vårt avslappnade paradis i Björnlunda, precis utanför Gnesta.<br>
@@ -20,11 +20,12 @@ export default function home() {
         <p>
             <span class="font-medium">Här på</span> <span class="font-one font-extrabold uppercase">Washbear Spa</span> går tiden i sin egna, lunkande takt. Vi tar din avslappning och välbefinnande på obekymrat allvar, och brinner för att du ska få den upplevelse och behandling som passar just <i>dig</i>.
         </p>
+        <div class="mt-[5px]">
+        <img src="/src/pictures/Spa-raccoon1.jpg" class="w-[350px] rounded-standard drop-shadow-standard float-right object-cover bg-dark-orange p-[10px] ml-[15px]" alt="En tvättbjörn som tvättar sig">
         <p class="mt-[13px]">
             <a href="/staff" class="font-medium">Vår kunniga och erfarna personal</a> ser till att du hamnar i rätt vårdande händer för din relaxupplevelse. Varför inte ta en titt på <a href="/treatments">vårt utbud av behandlingar</a>?
-        </p>
-        <div class="mt-[5px]">
-            <img src="/src/pictures/Spa-raccoon1.jpg" class="w-[350px] rounded-standard drop-shadow-standard float-right object-cover bg-dark-orange p-[10px] ml-[15px]" alt="En tvättbjörn som tvättar sig">
+        </p>    
+        
             <span class="font-medium">Vi erbjuder en mängd</span> olika upplevelser; tillgängliga för individer, par eller större grupper. Klicka på någon av ikonerna nedan för att läsa mer!
         </div>
         <div class="menuContainer flex flex-inline max-w-[fit-content] justify-self-center m-[5px] [&>*]:m-[10px]">
