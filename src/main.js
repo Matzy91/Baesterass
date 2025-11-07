@@ -98,17 +98,19 @@ const renderApp = () => {
   document.querySelector(".staffFooter")?.prepend(racoonIcon);
   document.querySelector(".treatmentsFooter")?.prepend(spaIcon);
   
-  let listOfIcons = [];
-  listOfIcons.push(skinIcon, hairIcon, coupleIcon, footIcon, massageIcon, meditationIcon, exerciseIcon);
-  
-  for (let icon of listOfIcons) {
-    let linky = document.createElement("a");
-    linky.href = "/treatments";
-    linky.classList.add("rounded-standard");
-    linky.append(icon);
-    document.querySelector(".menuContainer")?.append(linky);
+  const menuContainer = document.querySelector(".menuContainer");
+  if (menuContainer) {
+    let listOfIcons = [];
+    listOfIcons.push(skinIcon, hairIcon, coupleIcon, footIcon, massageIcon, meditationIcon, exerciseIcon);
+    
+    for (let icon of listOfIcons) {
+      let linky = document.createElement("a");
+      linky.href = "/treatments";
+      linky.classList.add("rounded-standard");
+      linky.append(icon);
+      menuContainer.append(linky);
+    }
   }
-  
 };
 
 renderApp();

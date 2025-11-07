@@ -110,6 +110,10 @@
   img:hover {
     @apply cursor-pointer;
   }
+  input[type=checkbox]:checked, input[type=radio]:checked {
+    accent-color: var(--color-dark-orange);
+  }
+
 }
 
 @keyframes carouselAnimation {
