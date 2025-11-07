@@ -1,7 +1,6 @@
-import { check, doc } from "prettier";
 import { treatmentList, treatmentTypes, sortOptions } from "../../Lists";
 import { createButton } from "../../components/button";
-import { renderConfirmedPopup, showPopup, closePopup, cancelAction } from "../../components/confirmPopUp";
+import { renderConfirmedPopup, showPopup} from "../../components/confirmPopUp";
 import BookingCalendar from "../../components/BookingCalendar.js";
 import {staffMembers } from "../../data/availabilityTest.js";
 
@@ -215,7 +214,9 @@ export default function generatebook() {
             const checkMark = document.querySelector(".checkMark");
             
             chosenTreatment.classList.add("hidden");
-            chosenDate.classList.remove("hidden");
+            chosenDate.classList.add("hidden");
+            checkMark.classList.add("hidden");
+            
             confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
             confirmButton.classList.add("bg-dark-green", "hover:bg-light-green")
             
@@ -224,35 +225,29 @@ export default function generatebook() {
                 confirmHeader.textContent = "Obs!";
                 chosenStaff.textContent = "Du måste välja minst 1 behandling innan du bokar.";
                 confirmButton.textContent = "OK";
-                chosenDate.classList.add("hidden");
-                checkMark.classList.add("hidden");
             }
             else if (!selectedDate && anyTreatmentChecked) {
                 console.log("Choose date - You've selected a treatment but no date.")
                 confirmHeader.textContent = "Obs!";
                 chosenStaff.textContent = "Du måste välja ett datum för att gå vidare.";
                 confirmButton.textContent = "OK";
-                chosenDate.classList.add("hidden");
-                checkMark.classList.add("hidden");
             }
             else if (selectedDate && anyTreatmentChecked && !noCardChecked) {
                 console.log("Accept card - Date and treatment are selected but you've not accepted our no card policy")
                 confirmHeader.textContent = "Obs!";
                 chosenStaff.textContent = "Vi godkänner tyvärr inte kortbetalningar - välj att betala på plats för att gå vidare.";
                 confirmButton.textContent = "OK";
-                chosenDate.classList.add("hidden");
-                checkMark.classList.add("hidden");
             }
             else if (selectedDate && anyTreatmentChecked && noCardChecked) {
                 console.log("Success, you've booked!")
                 chosenDate.classList.remove("hidden");
                 chosenTreatment.classList.remove("hidden");
-                checkMark.classList.add("inline");
+                checkMark.classList.remove("hidden");
                 confirmHeader.innerHTML = `Bokning bekräftad!`;
-
+                
                 const selectedTreatments = Array.from(document.querySelectorAll(".treatmentCheck:checked")).map(checkBox => checkBox.closest(".labelGroup").querySelector(".treatmentLabel").textContent);
                 const treatmentListString = selectedTreatments.join(", ");
-
+                
                 chosenTreatment.innerHTML = `<b>Vald behandling:</b><br>${treatmentListString}`;
                 chosenStaff.innerHTML = `<b>Vald specialist:</b><br>${specialistId}`;
                 chosenDate.innerHTML = `<b>Datum:</b><br>${date}`;

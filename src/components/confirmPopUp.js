@@ -5,7 +5,7 @@ export function renderConfirmedPopup() {
         <button onclick="closePopup()" class="absolute top-2 right-2 text-gray-500 hover:text-black">✕</button>
         <div class="text-green-600 text-4xl mb-2 checkMark">✔</div>
         <h2 class="text-xl font-semibold confirmHeader">Bokning bekräftad</h2>
-        <p class="text-sm text-gray-600 mt-1 chosenTreatment hidden">Denna behandling</p>
+        <p class="text-sm text-gray-600 mt-1 chosenTreatment">Denna behandling</p>
         <p class="text-sm text-gray-600 mt-1 chosenStaff">Denna person</p>
         <p class="text-sm text-gray-600 mt-1 chosenDate">Detta datum</p>
         <button onclick="cancelAction()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 confirmButton">Ångra</button>
