@@ -154,10 +154,10 @@ export const staffList = [
   {
     name: "Gusten",
     treatmentTypes: [
-      "Hårvård",
+      // "Hårvård",
       "Träning",
-      "Fotvård",
-      "Hudvård",
+      // "Fotvård",
+      // "Hudvård",
       "Massage",
       "Meditation",
     ],

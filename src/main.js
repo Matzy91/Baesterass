@@ -13,6 +13,8 @@ import headerHTML from "./views/static/header/index.html?raw";
 import footerHTML from "./views/static/footer/index.html?raw"; 
 import { check } from "prettier";
 
+const app = document.querySelector("#app");
+
 const getCurrentPage = () => {
   const currentPage = window.location.pathname;
   
@@ -29,8 +31,8 @@ const getCurrentPage = () => {
     return treatments();
     case "/testimonials":
     return testimonials();
-    case "/jennysTest":
-    return jennysTest();
+    // case "/jennysTest":
+    // return jennysTest();
     default:
     return (window.location.pathname = "/home");
   }
@@ -90,11 +92,11 @@ const renderApp = () => {
   const exerciseIcon = makeIcon("traning", 30, 30);
   const skinIcon = makeIcon("bubbles", 30, 30);
   
-  document.querySelector(".hem").append(homeIcon); 
-  document.querySelector(".bookFooter").prepend(checkIcon);
-  document.querySelector(".reviewsFooter").prepend(starIcon);
-  document.querySelector(".staffFooter").prepend(racoonIcon);
-  document.querySelector(".treatmentsFooter").prepend(spaIcon);
+  document.querySelector(".hem")?.append(homeIcon); 
+  document.querySelector(".bookFooter")?.prepend(checkIcon);
+  document.querySelector(".reviewsFooter")?.prepend(starIcon);
+  document.querySelector(".staffFooter")?.prepend(racoonIcon);
+  document.querySelector(".treatmentsFooter")?.prepend(spaIcon);
   
   const menuContainer = document.querySelector(".menuContainer");
   if (menuContainer) {
