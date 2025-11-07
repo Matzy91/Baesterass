@@ -2,11 +2,41 @@ import Card from "../../components/staffcards";
 import { staffList } from "../../Lists";
 
 export default function staffView() {
-  const container = document.createElement("div");
-  container.classList.add("grid", "grid-cols-1", "md:grid-cols-2", "gap-6", "p-6");
+  const staffPage = document.createElement("main");
+  staffPage.classList.add(
+    "flex",
+    "items-center",
+    "flex-col",
+    "bg-light-blue",
+    "p-standard",
+    "rounded-standard",
+    "drop-shadow-standard",
+    "self-center",
+    "w-[90vw]",
+    "max-w-[1200px]",
+    "h-[70vh]",
+    "overflow-y-auto",
+    "overflow-x-hidden",
+    "scrollbar"
+  );
+  staffPage.innerHTML = `
+    <h1 class="font-one">Vår Personal</h1>
+  `;
 
-  staffList.forEach((staff) => {
-    const treatments = `Behandlingar: ${staff.treatmentTypes.join(", ")}`;
+  const container = document.createElement("div");
+  container.classList.add(
+    "grid", 
+    "grid-cols-1", 
+    "md:grid-cols-2", 
+    "lg:grid-cols-4", 
+    "gap-6", 
+    "p-6"
+  );
+
+  const sortedStaffList = [...staffList].sort((a, b) => a.name.localeCompare(b.name));
+
+  sortedStaffList.forEach((staff) => {
+    const treatments = staff.treatmentTypes;
     const availability = `Tillgänglig: ${staff.availability.join(", ")}`;
 
     const card = Card({
@@ -18,6 +48,17 @@ export default function staffView() {
 
     container.appendChild(card);
   });
+  
+  const availability = document.createElement("p");
+  availability.classList.add(
+    "font-one",
+    "text-3xl",
+    "mt-6",
+    "mb-4"
+  );
+  availability.textContent = "Se lediga tider";
 
-  return container;
+  staffPage.appendChild(container);
+  staffPage.appendChild(availability);
+  return staffPage;
 }

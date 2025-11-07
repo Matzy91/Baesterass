@@ -1,6 +1,6 @@
 export default function Card({ name, treatments, availability, imageLink }) {
   const card = document.createElement("div");
-  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-orange-400", "p-standard", "rounded");
+  card.classList.add("card", "flex", "flex-col", "gap-4", "bg-amber-50", "p-standard", "rounded-2xl");
 
   const avatar = document.createElement("img");
   avatar.src = imageLink;
@@ -20,9 +20,23 @@ export default function Card({ name, treatments, availability, imageLink }) {
   nameEl.textContent = name;
   nameEl.classList.add("text-lg", "font-bold");
 
-  const treatmentsEl = document.createElement("p");
-  treatmentsEl.textContent = treatments;
-  treatmentsEl.classList.add("text-sm");
+  const treatmentsContainer = document.createElement("div");
+  treatmentsContainer.classList.add("flex", "flex-col", "gap-1");
+  
+  const treatmentsTitle = document.createElement("p");
+  treatmentsTitle.textContent = "Specialområde:";
+  treatmentsTitle.classList.add("text-sm", "font-semibold");
+  treatmentsContainer.appendChild(treatmentsTitle);
+
+  const treatmentsList = document.createElement("ul");
+  treatmentsList.classList.add("list-disc", "pl-5", "text-sm");
+  
+  treatments.forEach(treatment => {
+    const li = document.createElement("li");
+    li.textContent = treatment;
+    treatmentsList.appendChild(li);
+  });
+  treatmentsContainer.appendChild(treatmentsList);
 
   const availEl = document.createElement("p");
   availEl.textContent = availability;
@@ -32,7 +46,7 @@ export default function Card({ name, treatments, availability, imageLink }) {
   staff.appendChild(nameEl);
 
   card.appendChild(staff);
-  card.appendChild(treatmentsEl);
+  card.appendChild(treatmentsContainer);
   card.appendChild(availEl);
 
   return card;
