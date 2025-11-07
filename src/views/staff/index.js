@@ -37,7 +37,7 @@ export default function staffView() {
 
   sortedStaffList.forEach((staff) => {
     const treatments = staff.treatmentTypes;
-    const availability = `Tillgänglig: ${staff.availability.join(", ")}`;
+    const availability = staff.availability;
 
     const card = Card({
       name: staff.name,
@@ -49,16 +49,30 @@ export default function staffView() {
     container.appendChild(card);
   });
   
-  const availability = document.createElement("p");
-  availability.classList.add(
-    "font-one",
-    "text-3xl",
+    const bottomSection = document.createElement("div");
+  bottomSection.classList.add(
+    "flex",
+    "items-center",
+    "justify-center", 
     "mt-6",
     "mb-4"
   );
-  availability.textContent = "Se lediga tider";
+
+  const availabilityText = document.createElement("p");
+  availabilityText.classList.add("font-one", "text-3xl");
+  availabilityText.textContent = "Se lediga tider:";
+
+  const ctaButton = document.createElement("button");
+  ctaButton.textContent = "Klicka här";
+  ctaButton.classList.add("frontCTA", "m-standard", "text-xl");
+  ctaButton.addEventListener("click", () => {
+    location.href = "book";
+  });
+
+  bottomSection.appendChild(availabilityText);
+  bottomSection.appendChild(ctaButton);
 
   staffPage.appendChild(container);
-  staffPage.appendChild(availability);
+  staffPage.appendChild(bottomSection);
   return staffPage;
 }
