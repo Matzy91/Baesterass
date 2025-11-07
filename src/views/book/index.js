@@ -207,72 +207,67 @@ export default function generatebook() {
             renderConfirmedPopup();
             showPopup();
             
-            const popupMain = document.querySelector(".popupMain");
             const confirmHeader = document.querySelector(".confirmHeader");
             const chosenStaff = document.querySelector(".chosenStaff");
+            const chosenTreatment = document.querySelector(".chosenTreatment");
             const chosenDate = document.querySelector(".chosenDate");
             const confirmButton = document.querySelector(".confirmButton");
             const checkMark = document.querySelector(".checkMark");
             
+            chosenTreatment.classList.add("hidden");
+            chosenDate.classList.remove("hidden");
             confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
             confirmButton.classList.add("bg-dark-green", "hover:bg-light-green")
             
             if (!anyTreatmentChecked) {
-                console.log("Choose 1 - you're missing the treatment")
+                console.log("Choose at least 1 - You haven't selected a treatment.")
                 confirmHeader.textContent = "Obs!";
                 chosenStaff.textContent = "Du måste välja minst 1 behandling innan du bokar.";
                 confirmButton.textContent = "OK";
-                confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
-                confirmButton.classList.add("bg-dark-green", "hover:bg-light-green");
-                popupMain.removeChild(chosenDate);
-                popupMain.removeChild(checkMark);
+                chosenDate.classList.add("hidden");
+                checkMark.classList.add("hidden");
             }
             else if (!selectedDate && anyTreatmentChecked) {
-                console.log("Choose date - youve checked treatment but no date")
+                console.log("Choose date - You've selected a treatment but no date.")
                 confirmHeader.textContent = "Obs!";
                 chosenStaff.textContent = "Du måste välja ett datum för att gå vidare.";
                 confirmButton.textContent = "OK";
-                confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
-                confirmButton.classList.add("bg-dark-green", "hover:bg-light-green");
-                popupMain.removeChild(chosenDate);
-                popupMain.removeChild(checkMark);
+                chosenDate.classList.add("hidden");
+                checkMark.classList.add("hidden");
             }
             else if (selectedDate && anyTreatmentChecked && !noCardChecked) {
-                console.log("Accept card - youve checked date and treatment but not accepted card")
+                console.log("Accept card - Date and treatment are selected but you've not accepted our no card policy")
                 confirmHeader.textContent = "Obs!";
                 chosenStaff.textContent = "Vi godkänner tyvärr inte kortbetalningar - välj att betala på plats för att gå vidare.";
                 confirmButton.textContent = "OK";
-                confirmButton.classList.remove("bg-red-600", "hover:bg-red-700");
-                confirmButton.classList.add("bg-dark-green", "hover:bg-light-green");
-                popupMain.removeChild(chosenDate);
-                popupMain.removeChild(checkMark);
+                chosenDate.classList.add("hidden");
+                checkMark.classList.add("hidden");
             }
             else if (selectedDate && anyTreatmentChecked && noCardChecked) {
-                console.log("success, you've booked!")
+                console.log("Success, you've booked!")
+                chosenDate.classList.remove("hidden");
+                chosenTreatment.classList.remove("hidden");
+                checkMark.classList.add("inline");
                 confirmHeader.innerHTML = `Bokning bekräftad!`;
 
                 const selectedTreatments = Array.from(document.querySelectorAll(".treatmentCheck:checked")).map(checkBox => checkBox.closest(".labelGroup").querySelector(".treatmentLabel").textContent);
                 const treatmentListString = selectedTreatments.join(", ");
 
-                chosenStaff.innerHTML = `<b>Vald behandling:</b><br>${treatmentListString}<br><b>Vald specialist:</b><br>${specialistId}`;
+                chosenTreatment.innerHTML = `<b>Vald behandling:</b><br>${treatmentListString}`;
+                chosenStaff.innerHTML = `<b>Vald specialist:</b><br>${specialistId}`;
                 chosenDate.innerHTML = `<b>Datum:</b><br>${date}`;
                 confirmButton.textContent = "Ångra";
                 confirmButton.classList.remove("bg-dark-green", "hover:bg-light-green");
                 confirmButton.classList.add("bg-red-600", "hover:bg-red-700");
             }
             else {
-                console.log("you've missed something")
+                console.log("Something's gone terribly awry.")
             }
         }
     });
     
-    
-    
-    
-    
     cta.classList.add("min-w-fit");
     summaryContainer.append(cta);
-    
     
     let totalNumber = document.createElement("p");
     let cost = 0;
