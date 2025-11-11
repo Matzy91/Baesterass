@@ -15,7 +15,7 @@ export const sortOptions = [
   "Alfabetiskt, Ö → A",
   "Pris, högt → lågt",
   "Pris, lågt → högt",
-]
+];
 
 // För att välja olika behandlingar: visa typ + kostnad
 export const treatmentList = [
@@ -23,6 +23,7 @@ export const treatmentList = [
     name: "Massage",
     cost: "1000",
     type: ["Massage"],
+    description: "a wonderful full body massageeee",
   },
   {
     name: "Parmassage",
@@ -107,49 +108,55 @@ export const staffList = [
     name: "Jonas",
     treatmentTypes: ["Hårvård", "Fotvård", "Massage"],
     availability: ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"],
-    information: "Jonas har jobbat längst här på WASHBEAR SPA utav alla våra specialister: han var med från början när kliniken öppnade våren 2010. Jonas specialiserar sig på hårdvård, fotvård och massage, men håller även på att ubilda sig inom hudvård.",
+    information:
+      "Jonas har jobbat längst här på WASHBEAR SPA utav alla våra specialister: han var med från början när kliniken öppnade våren 2010. Jonas specialiserar sig på hårdvård, fotvård och massage, men håller även på att ubilda sig inom hudvård.",
     imageLink:
-    "https://ichef.bbci.co.uk/ace/standard/960/cpsprodpb/8842/live/eac34360-9847-11ef-9993-f7959d92ab33.jpg",
+      "https://ichef.bbci.co.uk/ace/standard/960/cpsprodpb/8842/live/eac34360-9847-11ef-9993-f7959d92ab33.jpg",
   },
   {
     name: "Craigory",
     treatmentTypes: ["Massage", "Hudvård"],
     availability: ["Onsdag"],
-    information: "Craigory är den du söker för att friska upp kroppen! Han har över tio års erfarenhet av olika typer av massage, men är även otroligt kunnig inom hudvård.",
+    information:
+      "Craigory är den du söker för att friska upp kroppen! Han har över tio års erfarenhet av olika typer av massage, men är även otroligt kunnig inom hudvård.",
     imageLink:
-    "https://crittercontroloftampa.com/wp-content/uploads/florida-angry-raccoon.jpg",
+      "https://crittercontroloftampa.com/wp-content/uploads/florida-angry-raccoon.jpg",
   },
   {
     name: "T.V. Ättbjörn",
     treatmentTypes: ["Träning", "Meditation", "Hudvård"],
     availability: ["Lördag", "Söndag"],
-    information: "T.V kan hjälpa dig med allt, oavsett om det gäller kropp, sinne eller hälsa!",
+    information:
+      "T.V kan hjälpa dig med allt, oavsett om det gäller kropp, sinne eller hälsa!",
     imageLink:
-    "https://www.hoo-zoo.com/wp-content/uploads/2022/06/portrait-of-a-raccoon-1200x900.jpeg",
+      "https://www.hoo-zoo.com/wp-content/uploads/2022/06/portrait-of-a-raccoon-1200x900.jpeg",
   },
   {
     name: "Vendela",
     treatmentTypes: ["Meditation", "Träning", "Massage"],
     availability: ["Tisdag", "Torsdag", "Fredag", "Lördag"],
-    information: "Vendela är en av WASHBEAR SPA:s grundare och en specialist vi är stolta att ha med i vårt team från dag ett. Vendela är specialiserad inom meditation och träning, så om du har bokat en av våra yoga-klasser är det troligt att det är hon som stöttar dig där!",
+    information:
+      "Vendela är en av WASHBEAR SPA:s grundare och en specialist vi är stolta att ha med i vårt team från dag ett. Vendela är specialiserad inom meditation och träning, så om du har bokat en av våra yoga-klasser är det troligt att det är hon som stöttar dig där!",
     imageLink:
-    "https://www.barkandwhiskers.com/content/images/2025/01/2023-08-03-nl-raccoons-as-pets.webp",
+      "https://www.barkandwhiskers.com/content/images/2025/01/2023-08-03-nl-raccoons-as-pets.webp",
   },
   {
     name: "Houlaloula",
     treatmentTypes: ["Massage", "Meditation"],
     availability: ["Lördag", "Söndag"],
-    information: "Houlaloula hjälper dig varva ner med helande händer och mediterande mindfullness. Houlaloula jobbar även på vår klinik utanför Göteborg, så hon är bara tillgänglig på helgerna på WASHBEAR SPA i Björnlunda.",
+    information:
+      "Houlaloula hjälper dig varva ner med helande händer och mediterande mindfullness. Houlaloula jobbar även på vår klinik utanför Göteborg, så hon är bara tillgänglig på helgerna på WASHBEAR SPA i Björnlunda.",
     imageLink:
-    "https://media.istockphoto.com/photos/little-raccoon-on-tree-picture-id514622028?k=6&m=514622028&s=612x612&w=0&h=oa6bEuRd9EB_D72qJ5UD57dBfnLWz7onQDm6DFJSVLc=",
+      "https://media.istockphoto.com/photos/little-raccoon-on-tree-picture-id514622028?k=6&m=514622028&s=612x612&w=0&h=oa6bEuRd9EB_D72qJ5UD57dBfnLWz7onQDm6DFJSVLc=",
   },
   {
     name: "Zabrina",
     treatmentTypes: ["Fotvård", "Träning", "Massage"],
     availability: ["Tisdag", "Onsdag", "Torsdag"],
-    information: "Zabrina är vår sportspecialist och hon ser efter dina fötter och din kropp för att säkerställa att allt är i synk för din träning.",
+    information:
+      "Zabrina är vår sportspecialist och hon ser efter dina fötter och din kropp för att säkerställa att allt är i synk för din träning.",
     imageLink:
-    "https://www.turnerpest.com/wp-content/uploads/2025/04/Raccoon-Babies-in-Florida-300x300.png",
+      "https://www.turnerpest.com/wp-content/uploads/2025/04/Raccoon-Babies-in-Florida-300x300.png",
   },
   {
     name: "Gusten",
@@ -161,18 +168,20 @@ export const staffList = [
       "Massage",
       "Meditation",
     ],
-    information: "Gusten är en av våra grundare, och även vår huvudsakliga specialist här på spa:t! Han kan det mesta om det mesta, så med Gusten är du i trygga, kunniga händer.",
+    information:
+      "Gusten är en av våra grundare, och även vår huvudsakliga specialist här på spa:t! Han kan det mesta om det mesta, så med Gusten är du i trygga, kunniga händer.",
     availability: ["Måndag", "Tisdag", "Onsdag"],
     imageLink:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzabpBH0X1F1QQ4XtN8mX8lpvevMn-0mj1vQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzabpBH0X1F1QQ4XtN8mX8lpvevMn-0mj1vQ&s",
   },
   {
     name: "Frazi",
     treatmentTypes: ["Massage", "Hudvård"],
     availability: ["Måndag", "Onsdag", "Torsdag", "Fredag", "Söndag"],
-    information: "Frazi kom till oss tidigare i år ifrån Frankrike där han har jobbat som massagespecialist i flera år, så nu har vi nöjet att få ta del av hans exotiska kunskap här på WASHBEAR SPA.",
+    information:
+      "Frazi kom till oss tidigare i år ifrån Frankrike där han har jobbat som massagespecialist i flera år, så nu har vi nöjet att få ta del av hans exotiska kunskap här på WASHBEAR SPA.",
     imageLink:
-    "https://www.scenichudson.org/wp-content/uploads/2024/11/AdobeStock_173371622-1400x935.jpeg",
+      "https://www.scenichudson.org/wp-content/uploads/2024/11/AdobeStock_173371622-1400x935.jpeg",
   },
 ];
 

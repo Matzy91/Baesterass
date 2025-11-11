@@ -46,10 +46,15 @@ export default function AccordionItem({ title, items }) {
     const nameP = document.createElement("p");
     nameP.innerHTML = `<a href="/book" class="font-extrabold">${treatment.name}</a>`;
 
+    const descriptionP = document.createElement("p");
+    descriptionP.textContent = treatment.description
+      ? treatment.description
+      : "no description yet";
+
     const costP = document.createElement("p");
     const localizedCost = Number(treatment.cost);
     costP.textContent = `Från ${localizedCost.toLocaleString("sv-SE")} SEK`;
-    div.append(nameP, costP);
+    div.append(nameP, descriptionP, costP);
 
     content.appendChild(div);
   });
