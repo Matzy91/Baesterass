@@ -1,28 +1,34 @@
-export default function Card({ name, treatments, availability, imageLink }) {
+import { makeIcon } from "../components/icon.js";
+
+export default function Card({ name, treatments, availability, imageLink, information }) {
   const card = document.createElement("div");
   card.classList.add(
     "card", 
     "flex", 
     "flex-col", 
-    "justify-between", 
     "gap-2",
-    "h-full",
+    "h-[295px]",
     "bg-amber-50", 
     "p-standard", 
-    "rounded-2xl"
-  );
+    "rounded-2xl",
+    "hover:bg-amber-100",
+    "drop-shadow-standard",
+    "group",
+    "hover:[&>*:not(:last-child)]:hidden"
 
+  );
+  
   const avatar = document.createElement("img");
   avatar.src = imageLink;
   avatar.alt = `${name}'s avatar`;
   avatar.classList.add(
     "rounded-full",
     "aspect-square",
-    "h-14",
-    "w-14",
+    "h-24",
+    "w-24",
     "object-cover"
   );
-
+  
   const staff = document.createElement("div");
   staff.classList.add(
     "flex", 
@@ -30,21 +36,21 @@ export default function Card({ name, treatments, availability, imageLink }) {
     "items-center",
     "mb-2"
   );
-
+  
   const nameEl = document.createElement("h3");
   nameEl.textContent = name;
-  nameEl.classList.add("text-lg", "font-bold");
-
+  nameEl.classList.add("text-xl", "font-bold", "font-one");
+  
   const treatmentsContainer = document.createElement("div");
-  treatmentsContainer.classList.add("flex", "flex-col", "gap-1", "flex-grow");
+  treatmentsContainer.classList.add("flex", "flex-col", "gap-1");
   
   const treatmentsTitle = document.createElement("p");
   treatmentsTitle.textContent = "Specialområde:";
   treatmentsTitle.classList.add("text-sm", "font-semibold");
   treatmentsContainer.appendChild(treatmentsTitle);
-
+  
   const treatmentsList = document.createElement("ul");
-  treatmentsList.classList.add("list-disc", "pl-5", "text-sm");
+  treatmentsList.classList.add("list-disc", "pl-5");
   
   treatments.forEach(treatment => {
     const li = document.createElement("li");
@@ -52,27 +58,50 @@ export default function Card({ name, treatments, availability, imageLink }) {
     treatmentsList.appendChild(li);
   });
   treatmentsContainer.appendChild(treatmentsList);
-
+  
   const availabilityContainer = document.createElement("div");
   availabilityContainer.classList.add("flex", "flex-col");
-
+  
   const availabilityTitle = document.createElement("p");
   availabilityTitle.textContent = "Tillgänglig:";
   availabilityTitle.classList.add("text-sm", "font-semibold");
-
-  const availabilityText = document.createElement("p");
+  
+  const availabilityText = document.createElement("li");
   availabilityText.textContent = availability.join(", ");
-  availabilityText.classList.add("text-sm");
-
+  availabilityText.classList.add("text-sm", "pl-5", "list-none");
+  
   availabilityContainer.appendChild(availabilityTitle);
   availabilityContainer.appendChild(availabilityText);
-
+  
+  const backPage = document.createElement("div");
+  const infoText = document.createElement("p");
+  infoText.classList.add("text-justify");
+  
+  let infoArray = information.split(" ");
+  let firstWord = infoArray.shift();
+  firstWord = firstWord.toUpperCase();
+  const firstWordElement = document.createElement("span");
+  firstWordElement.innerText = firstWord;
+  firstWordElement.classList.add("font-bold");
+  information = infoArray.join(" ");
+  
+  infoText.textContent = " " + information;
+  infoText.prepend(firstWordElement);
+  
+  const flipIcon = makeIcon("raccoon", 25, 25);
+  flipIcon.classList.add("self-end", "justify-self-end");
+  
+  backPage.appendChild(infoText);
+  backPage.appendChild(flipIcon);
+  backPage.classList.add("group-hover:flex", "hidden", "flex-col", "h-full", "justify-between");
+  
   staff.appendChild(avatar);
   staff.appendChild(nameEl);
-
+  
   card.appendChild(staff);
   card.appendChild(treatmentsContainer);
   card.appendChild(availabilityContainer);
-
+  card.appendChild(backPage)
+  
   return card;
 }

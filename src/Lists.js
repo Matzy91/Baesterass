@@ -117,13 +117,13 @@ export const staffList = [
     availability: ["Onsdag"],
     information: "Craigory är den du söker för att friska upp kroppen! Han har över tio års erfarenhet av olika typer av massage, men är även otroligt kunnig inom hudvård.",
     imageLink:
-    "https://crittercontroloftampa.com/wp-content/uploads/florida-angry-raccoon.jpg",
+    "https://i.natgeofe.com/n/8271db90-5c35-46bc-9429-588a9529e44a/raccoon_thumb_square.JPG?wp=1&w=357&h=357",
   },
   {
     name: "T.V. Ättbjörn",
     treatmentTypes: ["Träning", "Meditation", "Hudvård"],
     availability: ["Lördag", "Söndag"],
-    information: "T.V kan hjälpa dig med allt, oavsett om det gäller kropp, sinne eller hälsa!",
+    information: "T.V. kan hjälpa dig med allt, oavsett om det gäller kropp, sinne eller hälsa! T.V. jobbar även i receptionen, och är oftast den som möter dig när du anländer till WASHBEAR SPA.",
     imageLink:
     "https://www.hoo-zoo.com/wp-content/uploads/2022/06/portrait-of-a-raccoon-1200x900.jpeg",
   },
@@ -131,7 +131,7 @@ export const staffList = [
     name: "Vendela",
     treatmentTypes: ["Meditation", "Träning", "Massage"],
     availability: ["Tisdag", "Torsdag", "Fredag", "Lördag"],
-    information: "Vendela är en av WASHBEAR SPA:s grundare och en specialist vi är stolta att ha med i vårt team från dag ett. Vendela är specialiserad inom meditation och träning, så om du har bokat en av våra yoga-klasser är det troligt att det är hon som stöttar dig där!",
+    information: "Vendela är en av WASHBEAR SPA:s grundare och en specialist vi är stolta över att ha haft med i vårt team från dag ett. Vendela är specialiserad inom meditation och träning, och kan både få pulsen att stiga och lugna sig!",
     imageLink:
     "https://www.barkandwhiskers.com/content/images/2025/01/2023-08-03-nl-raccoons-as-pets.webp",
   },
