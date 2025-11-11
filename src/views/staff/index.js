@@ -44,6 +44,7 @@ export default function staffView() {
       treatments: treatments,
       availability: availability,
       imageLink: staff.imageLink,
+      information: staff.information
     });
 
     container.appendChild(card);
