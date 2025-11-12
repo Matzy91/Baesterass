@@ -2,7 +2,7 @@ import { treatmentList, treatmentTypes, sortOptions } from "../../Lists";
 import { createButton } from "../../components/button";
 import { renderConfirmedPopup, showPopup} from "../../components/confirmPopUp";
 import BookingCalendar from "../../components/BookingCalendar.js";
-import {staffMembers } from "../../data/availabilityTest.js";
+
 
 export default function generatebook() {
     // ----------------- let's make some divs --------------------- //
@@ -159,20 +159,15 @@ export default function generatebook() {
     
     let currentSelection = {
         date: null,
-        specialistId: null,
+        specialistName: null,
     }
     
-    function renderSelection({date, specialistId}){
+    function renderSelection({date, specialistName}){
         currentSelection.date = date;
-        currentSelection.specialistId = specialistId;
-        
-        const staffName =
-        specialistId
-        ? (staffMembers.find(s => s.id === specialistId).name ?? specialistId)
-        : "";
+        currentSelection.specialistName = specialistName;
         
         selDateEl.innerHTML =`<span class="text-base font-bold">Datum:</span> ${date || ""}`;
-        selStaffEl.innerHTML = `<span class="text-base font-bold">Specialist:</span> ${staffName || ""}`;
+        selStaffEl.innerHTML = `<span class="text-base font-bold">Specialist:</span> ${specialistName || ""}`;
     }
     
     //Lyssnar om något sker i kalender-komponenten
@@ -200,7 +195,7 @@ export default function generatebook() {
         onClick: () => {
             const noCardChecked = document.querySelector(".noCard-check").checked;
             const anyTreatmentChecked = Array.from(document.querySelectorAll(".treatmentCheck")).some(checkBox => checkBox.checked);
-            const { date, specialistId } = currentSelection;
+            const { date, specialistName } = currentSelection;
             const selectedDate = currentSelection.date;
             
             renderConfirmedPopup();
@@ -249,7 +244,7 @@ export default function generatebook() {
                 const treatmentListString = selectedTreatments.join(", ");
                 
                 chosenTreatment.innerHTML = `<b>Vald behandling:</b><br>${treatmentListString}`;
-                chosenStaff.innerHTML = `<b>Vald specialist:</b><br>${specialistId}`;
+                chosenStaff.innerHTML = `<b>Vald specialist:</b><br>${specialistName}`;
                 chosenDate.innerHTML = `<b>Datum:</b><br>${date}`;
                 confirmButton.textContent = "Ångra";
                 confirmButton.classList.remove("bg-dark-green", "hover:bg-light-green");

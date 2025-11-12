@@ -2,8 +2,8 @@ import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
 import sv from "air-datepicker/locale/sv";
 
-//hämtar statisk data från data/availabilityTest.js
-import { staffMembers, availability } from "../data/availabilityTest.js";
+//hämtar statisk data från /Lists.js
+import {staffList} from "../Lists.js"
 
 
 //Låter användaren välja datum som sedan översätter det till en ISO-sträng, dvs en standard för datum för datorer. YYYY-MM-DD
@@ -14,19 +14,24 @@ const toISO = (d) => {
   return `${y}-${m}-${day}`;
 };
 
-// Hämtar personalobjekt av de som jobbar en viss dag
-const getStaffForDate = (iso) => {
-  const ids = availability[iso] || [];
-  return staffMembers.filter((s) => ids.includes(s.id));
+const weekday = (d) => {
+  const names = ["Söndag","Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag"]; // javascript getDay har söndag som index 0 🤪
+  return names[d.getDay()];
 };
+
+const getStaffForWeekday = (weekdayName) => {
+  return staffList.filter((s) => Array.isArray(s.availability) && s.availability.includes(weekdayName));
+};
+
 
 // export default function BookingCalendar()
 //Är självaste komponenten som skapas och sedan retuneras i ett DOM-element
 // Innehåller kalendern, personallistan och "nästa"-knapp
 export default function BookingCalendar() {
   //Lokalt "state" i komponenten
-  let selectedDate = "";
-  let selectedStaffId = "";
+  let selectedDateISO = "";
+  let selectedWeekday = "";
+  let selectedStaffName ="";
 
   // Root-node som kapslar in hela komponenten
   const root = document.createElement("section");
@@ -49,32 +54,33 @@ export default function BookingCalendar() {
   const staffEl = root.querySelector("#staff");
 
   // Gör det lätt att läsa värdet utifrån
-  root.getSelection = () => ({ date: selectedDate, specialistId: selectedStaffId });
+  root.getSelection = () => ({ date: selectedDateISO, specialistName: selectedStaffName });
 
   // Hjälpare: emit:a ett förändrings-event uppåt
   const emitChange = () => {
     root.dispatchEvent(
       new CustomEvent("booking:change", {
         bubbles: true,
-        detail: { date: selectedDate, specialistId: selectedStaffId },
+        detail: { date: selectedDateISO, specialistName: selectedStaffName },
       })
     );
   };
 
   //Renderar personal-listan för `selectedDate`
   function renderStaff() {
-    if (!selectedDate) {
+    if (!selectedWeekday) {
       staffEl.innerHTML = `<p class="text-slate-500">Välj en dag först.</p>`;
-      selectedStaffId = "";
+      selectedStaffName = "";
       emitChange();
       return;
     }
 
-    const list = getStaffForDate(selectedDate);
+    const list = getStaffForWeekday(selectedWeekday);
 
     if (!list.length) {
-      staffEl.innerHTML = `<p>Inga specialister tillgängliga för ${selectedDate}.</p>`;
-      selectedStaffId = "";
+      const dayText = selectedDateISO ? `${selectedWeekday} (${selectedDateISO})` : selectedWeekday;
+      staffEl.innerHTML = `<p>Inga specialister tillgängliga för ${dayText}.</p>`;
+      selectedStaffName = "";
       emitChange();
       return;
     }
@@ -84,14 +90,14 @@ export default function BookingCalendar() {
       .map(
         (s) => `
       <label class="flex items-center gap-2">
-        <input type="radio" name="spec" value="${s.id}">
+        <input type="radio" name="spec" value="${s.name}">
         <span>${s.name}</span>
       </label>`
       )
       .join("");
 
       //Nollställer tidigare val om datumet bytts
-    selectedStaffId = "";
+    selectedStaffName = "";
     emitChange();
   }
 
@@ -103,7 +109,13 @@ export default function BookingCalendar() {
     autoClose: true,
     locale: sv,
     onSelect: ({ date }) => {
-      selectedDate = date ? toISO(date) : "";
+      if(date){
+        selectedDateISO = toISO(date);
+        selectedWeekday = weekday(date);
+      }else {
+        selectedDateISO = "";
+        selectedWeekday = "";
+      }
       renderStaff();
       emitChange();
     },
@@ -114,7 +126,7 @@ export default function BookingCalendar() {
   // CTA aktiveras bara om både datum och personal är valda
   root.addEventListener("change", (e) => {
     if (e.target.name === "spec") {
-      selectedStaffId = e.target.value;
+      selectedStaffName = e.target.value;
       emitChange();
     }
   });
