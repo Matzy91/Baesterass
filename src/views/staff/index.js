@@ -8,7 +8,6 @@ export default function staffView() {
     "items-center",
     "flex-col",
     "bg-light-blue",
-    "p-standard",
     "rounded-standard",
     "drop-shadow-standard",
     "self-center",
@@ -20,7 +19,9 @@ export default function staffView() {
     "scrollbar"
   );
   staffPage.innerHTML = `
-    <h1 class="font-one">Vår Personal</h1>
+  <div class="bg-light-blue sticky top-0 pb-3 pt-3 z-1 w-full drop-shadow-standard">  
+  <h1 class="font-one text-center">Vår Personal</h1>
+  </div>
   `;
 
   const container = document.createElement("div");
@@ -55,7 +56,6 @@ export default function staffView() {
     "flex",
     "items-center",
     "justify-center", 
-    "mt-6",
     "mb-4"
   );
 
@@ -65,7 +65,7 @@ export default function staffView() {
 
   const ctaButton = document.createElement("button");
   ctaButton.textContent = "Klicka här";
-  ctaButton.classList.add("frontCTA", "m-standard", "text-xl");
+  ctaButton.classList.add("frontCTA", "m-1", "text-xl");
   ctaButton.addEventListener("click", () => {
     location.href = "book";
   });

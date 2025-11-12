@@ -14,8 +14,10 @@ export default function Card({ name, treatments, availability, imageLink, inform
     "hover:bg-amber-100",
     "drop-shadow-standard",
     "group",
-    "hover:[&>*:not(:last-child)]:hidden"
-
+    "hover:[&>*:not(:last-child)]:opacity-0",
+    "hover:[&>*:last-child]:opacity-100",
+    "w-auto",
+    "transition-all"
   );
   
   const avatar = document.createElement("img");
@@ -93,7 +95,7 @@ export default function Card({ name, treatments, availability, imageLink, inform
   
   backPage.appendChild(infoText);
   backPage.appendChild(flipIcon);
-  backPage.classList.add("group-hover:flex", "hidden", "flex-col", "h-full", "justify-between");
+  backPage.classList.add("group-hover:flex", "opacity-0", "flex-col", "h-[90%]", "justify-between", "absolute", "w-[90%]", "self-center", "transition-all", "p-[10px]");
   
   staff.appendChild(avatar);
   staff.appendChild(nameEl);
