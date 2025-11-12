@@ -11,7 +11,7 @@ export default function generatebook() {
     book.innerHTML = `<h1 class="font-one text-center pb-1">Välj och boka behandling</h1>`; 
     
     const bookingContainer = document.createElement("div");
-    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1180px]", "justify-center", "mt-[10px]");
+    bookingContainer.classList.add("bookingContainer", "flex", "flex-row", "[&>*]:p-2","w-[80vw]","max-w-[1180px]", "justify-center", "mt-[10px]", "pb-[20px]");
     
     const calendarContainer = document.createElement("div");
     calendarContainer.classList.add("calendarContainer", "w-[1/3]");

@@ -16,12 +16,11 @@ export default function staffView() {
     "h-[70vh]",
     "overflow-y-auto",
     "overflow-x-hidden",
-    "scrollbar"
+    "scrollbar",
+    "p-standard"
   );
   staffPage.innerHTML = `
-  <div class="bg-light-blue sticky top-0 pb-3 pt-3 z-1 w-full drop-shadow-standard">  
   <h1 class="font-one text-center">Vår Personal</h1>
-  </div>
   `;
 
   const container = document.createElement("div");
