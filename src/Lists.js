@@ -107,7 +107,7 @@ export const staffList = [
     name: "Jonas",
     treatmentTypes: ["Hårvård", "Fotvård", "Massage"],
     availability: ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag"],
-    information: "Jonas har jobbat längst här på WASHBEAR SPA utav alla våra specialister: han var med från början när kliniken öppnade våren 2010. Jonas specialiserar sig på hårdvård, fotvård och massage, men håller även på att ubilda sig inom hudvård.",
+    information: "Jonas har jobbat längst här på WASHBEAR SPA: han var med från början när kliniken öppnade våren 2010. Jonas kan allt inom hårdvård, fotvård och massage, men håller även på att ubilda sig inom hudvård.",
     imageLink:
     "https://ichef.bbci.co.uk/ace/standard/960/cpsprodpb/8842/live/eac34360-9847-11ef-9993-f7959d92ab33.jpg",
   },
